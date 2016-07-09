@@ -1,12 +1,12 @@
 import App from './components/App'
-import React from 'react';
+import React from 'react'
 import { render } from 'react-dom'
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import routes from './routes'
+import injectTapEventPlugin from 'react-tap-event-plugin'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 
-// const Appy = () => (
-//   <MuiThemeProvider>
-//     <App />
-//   </MuiThemeProvider>
-// )
+injectTapEventPlugin()
 
-render(<App />, document.getElementById('container'))
+render(<MuiThemeProvider>
+          {routes}
+       </MuiThemeProvider>, document.getElementById('container'))
