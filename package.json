@@ -1,0 +1,30 @@
+{
+  "name": "react-simple-spa",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "npm run dev",
+    "api": "node simple_api/server.js",
+    "dev": "webpack-dev-server --hot --inline"
+  },
+  "devDependencies": {
+    "babel-core": "^6.5.2",
+    "babel-loader": "^6.2.3",
+    "babel-preset-es2015": "^6.5.0",
+    "babel-preset-react": "^6.5.0",
+    "babel-preset-react-hmre": "^1.1.1",
+    "babel-preset-stage-0": "^6.5.0",
+    "webpack": "^1.12.14",
+    "webpack-dev-server": "^1.14.1"
+  },
+  "dependencies": {
+    "jquery": "^3.0.0",
+    "material-ui": "^0.15.1",
+    "object-assign": "^4.1.0",
+    "react": "^15.2.0",
+    "react-dom": "^15.2.0",
+    "react-router": "^2.5.2",
+    "react-tap-event-plugin": "^1.0.0"
+  }
+}
