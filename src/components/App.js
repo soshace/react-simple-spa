@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 
 import Header from './Header'
-import Sidebar from './Sidebar'
 // import assign from 'object-assign'
 
 class App extends Component {
@@ -10,8 +9,6 @@ class App extends Component {
     return (
       <div>
         <Header />
-        <Sidebar />
-
         <main className="content">
           {this.props.children}
         </main>
