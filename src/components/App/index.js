@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import Header from './Header'
+import Header from '../Header'
 // import assign from 'object-assign'
 
 class App extends Component {

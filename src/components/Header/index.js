@@ -14,6 +14,8 @@ import BookingIcon from 'material-ui/svg-icons/action/book'
 import CalendarIcon from 'material-ui/svg-icons/action/event'
 import FinanceIcon from 'material-ui/svg-icons/action/account-balance'
 
+
+
 class Header extends Component {
   state = {
     isOpen: false
@@ -27,19 +29,21 @@ class Header extends Component {
   }
 
   render() {
+    const openClass = this.state.isOpen ? 'navOpen' : ''
+
     return (
       <header>
         <AppBar
+            className={openClass}
             title="Messages??"
             onLeftIconButtonTouchTap={this.handleToggle}
             iconElementRight={
               <div>
-                <input type="text" />
-                <IconButton className="whiteColor"
-                    ><NotificationIcon /></IconButton>
+                <input type="text" value="Search"/>
+                <IconButton><NotificationIcon color="white" /></IconButton>
                 <IconMenu
                   iconButtonElement={
-                  <IconButton className="whiteColor"><MoreVertIcon /></IconButton>
+                  <IconButton><MoreVertIcon color="white" /></IconButton>
                 }
                 targetOrigin={{horizontal: 'right', vertical: 'top'}}
                 anchorOrigin={{horizontal: 'right', vertical: 'top'}}
