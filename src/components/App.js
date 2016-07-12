@@ -17,7 +17,8 @@ class App extends Component {
   }
 
   render() {
-    const mainClass = this.state.navIsOpen ? 'content--active' : 'content'
+    const mainClass = this.state.navIsOpen ? 'content content--active' : 'content'
+    
     return (
       <div>
         <Sidebar navIsOpen={this.state.navIsOpen} />
