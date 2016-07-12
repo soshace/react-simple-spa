@@ -11,7 +11,7 @@ class Header extends Component {
   render() {
     const { navIsOpen, toggleNav } = this.props
     const navIcon = navIsOpen ? <CloseIcon /> : <BurgerIcon />
-
+    const titleValue = navIsOpen ? null : "Title?"
     const headerStyle = navIsOpen ? {
       marginLeft: "20%",
       width: "80%",
@@ -25,7 +25,7 @@ class Header extends Component {
     return (
       <AppBar className="header" title={null} titleStyle={titleStyle} iconElementLeft={<IconButton onTouchTap={toggleNav}>{navIcon}</IconButton>} style={headerStyle}>
         <div className="header__title">
-          <h1>Title?</h1>
+          <h1>{titleValue}</h1>
         </div>
         <div className="header__search">
           <button className="header__search-btn">
