@@ -10,7 +10,6 @@ class App extends Component {
   }
 
   toggleNav = (ev) => {
-    ev.preventDefault()
     this.setState({
       navIsOpen: !this.state.navIsOpen
     })
@@ -18,10 +17,10 @@ class App extends Component {
 
   render() {
     const mainClass = this.state.navIsOpen ? 'content content--active' : 'content'
-    
+
     return (
       <div>
-        <Sidebar navIsOpen={this.state.navIsOpen} />
+        <Sidebar navIsOpen={this.state.navIsOpen} toggleNav={this.toggleNav} />
         <Header navIsOpen={this.state.navIsOpen} toggleNav={this.toggleNav} />
         <main className={mainClass}>
           {this.props.children}

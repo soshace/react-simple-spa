@@ -1,15 +1,18 @@
-body {
-  min-width: 320px;
-  // font-size: $font-size;
-  // line-height: $line-height;
-  // font-family: $font-stack;
-}
 
-.content {
-  box-sizing: border-box;
-}
+@media (min-width: $screen_md) {
+  body {
+    min-width: 320px;
+    // font-size: $font-size;
+    // line-height: $line-height;
+    // font-family: $font-stack;
+  }
 
-.content--active {
-  margin-left: 50%;
-  width: 50%;
+  .content {
+    box-sizing: border-box;
+  }
+
+  .content--active {
+    margin-left: 50%;
+    width: 50%;
+  }
 }
