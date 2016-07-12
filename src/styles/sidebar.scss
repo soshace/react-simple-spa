@@ -1,0 +1,90 @@
+.sidebar {
+
+  &__top {
+    position: relative;
+    z-index: 10;
+    background: url(https://pp.vk.me/c633624/v633624081/41402/HAfTjbrowTs.jpg);
+    padding: 10px;
+    padding-top: 50px;
+    color: white;
+  }
+
+  &__top::before {
+    content: '';
+    position: absolute;
+    z-index: 5;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(41, 121, 255, 0.8);
+  }
+
+  &__top-user {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  &__top-img {
+    margin-right: 20px;
+  }
+
+  &__top-name {
+    // font?
+  }
+
+  &__top-name p {
+    margin: 0;
+  }
+
+  &__top-name small {
+    font-weight: 100;
+  }
+
+  &__top-btn {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__nav {
+    margin-top: 20px;
+  }
+}
+
+
+@media (min-width: $screen_md) {
+  .sidebar {
+
+    &__top {
+      padding: 15px;
+      padding-top: 70px;
+      padding-bottom: 20px;
+    }
+
+    &__top::before {
+      background: rgba(69, 77, 149, 0.4);
+    }
+
+    &__top-user {
+      flex-direction: column;
+      text-align: center;
+      justify-content: center;
+      margin-bottom: 30px;
+    }
+
+    &__top-img {
+      margin-right: 0;
+    }
+
+    &__top-btn {
+      justify-content: space-around;
+    }
+  }
+}
