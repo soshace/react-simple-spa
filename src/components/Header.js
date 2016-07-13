@@ -20,11 +20,12 @@ class Header extends Component {
 
     let searchBtnStyle = isMobile ? null : { display: "none" }
 
-    let headerStyle = { backgroundColor: "#2979ff" }
+    let headerStyle = { backgroundColor: "#2979ff", boxShadow: "none"}
     if (navIsOpen && !isMobile) {
       headerStyle.marginLeft = "20%"
       headerStyle.width = "80%"
     }
+    if (!isMobile) headerStyle.boxShadow = "rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px"
 
     return (
       <AppBar className="header" title={null} titleStyle={titleStyle} iconElementLeft={<IconButton onTouchTap={toggleNav}>{navIcon}</IconButton>} style={headerStyle}>

@@ -10,8 +10,8 @@ export default (
   <Router history={browserHistory}>
     <Route path="/" component={App}>
       <IndexRoute component={Home} />
-      <Route path="booking-list" component={BookingList} />
-      <Route path="booking" component={Booking} />
+      <Route path="/bookings" component={BookingList} />
+      <Route path="/bookings/:username" component={Booking} />
     </Route>
   </Router>
 )

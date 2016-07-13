@@ -2,7 +2,7 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  background-color: #2979ff;
+  background-color: $blue-color;
   padding-bottom: 5px;
 
   &__title {
@@ -53,7 +53,7 @@
     // display: flex;
     // justify-content: space-around;
     // align-items: center;
-    // background-color: #2979ff;
+    // background-color: $blue-color;
       padding-bottom: 10px;
 
     &__title {

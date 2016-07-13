@@ -45,7 +45,7 @@ class Sidebar extends Component {
           </div>
         </div>
         <div className="sidebar__nav">
-          <MenuItem primaryText="Inbox" onTouchTap={toggleNav} containerElement={<Link to="booking-list" />} leftIcon={<InboxIcon />} />
+          <MenuItem primaryText="Inbox" onTouchTap={toggleNav} containerElement={<Link to="/bookings" />} leftIcon={<InboxIcon />} />
           <MenuItem primaryText="Quotes" onTouchTap={toggleNav} leftIcon={<QuotesIcon />} />
           <MenuItem primaryText="Bookings" onTouchTap={toggleNav} leftIcon={<BookingIcon />} />
           <MenuItem primaryText="Calendar" onTouchTap={toggleNav} leftIcon={<CalendarIcon />} />
