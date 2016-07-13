@@ -1,5 +1,6 @@
 import React, { Component }  from 'react'
 import ReactRouter, { Link } from 'react-router'
+import onWindowResize from '../decorators/onWindowResize'
 
 //import MobileTearSheet from '../../../MobileTearSheet'
 import { Drawer, Avatar, MenuItem, IconButton, FlatButton } from 'material-ui'
@@ -13,25 +14,21 @@ import FinanceIcon from 'material-ui/svg-icons/action/account-balance'
 class Sidebar extends Component {
 
   render() {
-    const { navIsOpen, toggleNav } = this.props
+    const { navIsOpen, toggleNav, isMobile } = this.props
 
-    let accountBtnColor = null
-    let settingsBtnStyle = null
-    let sidebarStyle = null
-    if (window.innerWidth > 699) {
-      accountBtnColor = "#2979ff"
-      settingsBtnStyle = {
-        backgroundColor: "#2979ff",
-        width: 38,
-        height: 36,
-        padding: 0,
-        borderRadius: 2
-      }
-      sidebarStyle = navIsOpen ? {width: "30%"} : null
+    let accountBtnColor = isMobile ? null : "#2979ff"
+    let settingsBtnStyle = isMobile ? null : {
+      backgroundColor: "#2979ff",
+      width: 38,
+      height: 36,
+      padding: 0,
+      borderRadius: 2
     }
+    let sidebarStyle = !isMobile && navIsOpen ? { width: "20%" } : null
+    let dockedProp = isMobile ? false : true
 
     return (
-      <Drawer className="sidebar" docked={false} open={navIsOpen} containerStyle={sidebarStyle} onRequestChange={toggleNav}>
+      <Drawer className="sidebar" docked={dockedProp} open={navIsOpen} containerStyle={sidebarStyle} onRequestChange={toggleNav}>
         <div className="sidebar__top">
           <div className="sidebar__top-user">
             <div className="sidebar__top-img">
@@ -59,4 +56,4 @@ class Sidebar extends Component {
   }
 }
 
-export default Sidebar
+export default onWindowResize(Sidebar)

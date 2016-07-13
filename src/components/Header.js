@@ -1,4 +1,5 @@
 import React, { Component }  from 'react'
+import onWindowResize from '../decorators/onWindowResize'
 
 import { AppBar, IconButton, IconMenu, MenuItem } from 'material-ui'
 import SearchIcon from 'material-ui/svg-icons/action/search'
@@ -10,33 +11,20 @@ import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert'
 class Header extends Component {
 
   render() {
-    const { navIsOpen, toggleNav } = this.props
+    const { navIsOpen, toggleNav, isMobile } = this.props
+
     const navIcon = navIsOpen ? <CloseIcon /> : <BurgerIcon />
 
     const titleValue = navIsOpen ? null : "Title?"
-    const titleStyle = {
-      display: "none"
-    }
+    const titleStyle = { display: "none" }
 
-    let searchBtnStyle = null
+    let searchBtnStyle = isMobile ? null : { display: "none" }
+
     let headerStyle = { backgroundColor: "#2979ff" }
-
-    if (window.innerWidth > 699) {
-      searchBtnStyle = {
-        display: "none"
-      }
-
-      headerStyle = navIsOpen ? {
-        marginLeft: "30%",
-        width: "70%",
-        backgroundColor: "#2979ff"
-      } : {backgroundColor: "#2979ff"}
+    if (navIsOpen && !isMobile) {
+      headerStyle.marginLeft = "20%"
+      headerStyle.width = "80%"
     }
-
-    // window.onresize = function() {
-    //   console.log(window.innerWidth)
-    //
-    // }
 
     return (
       <AppBar className="header" title={null} titleStyle={titleStyle} iconElementLeft={<IconButton onTouchTap={toggleNav}>{navIcon}</IconButton>} style={headerStyle}>
@@ -68,4 +56,4 @@ class Header extends Component {
   }
 }
 
-export default Header
+export default onWindowResize(Header)
