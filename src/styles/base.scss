@@ -7,10 +7,13 @@ body {
 
 .content {
   box-sizing: border-box;
-  background-color: #eceff1;
+  background-color: $grey-color;
 }
 
 @media (min-width: $screen_md) {
+  .content {
+    padding: 20px;
+  }
 
   .content--active {
     margin-left: 50%;

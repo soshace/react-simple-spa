@@ -11,7 +11,7 @@ export default (
     <Route path="/" component={App}>
       <IndexRoute component={Home} />
       <Route path="/bookings" component={BookingList} />
-      <Route path="/bookings/:username" component={Booking} />
+      <Route path="/bookings/:id" component={Booking} />
     </Route>
   </Router>
 )
