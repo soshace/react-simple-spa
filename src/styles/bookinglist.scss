@@ -1,22 +1,36 @@
 .booking-list {
 
   &__tabs {
+    padding: 0;
+    margin: 0;
+    margin-bottom: 20px;
+    font-size: 0;
+    text-align: center;
     box-sizing: border-box;
     list-style: none;
-    margin: 0;
-    padding: 0;
-    text-align: center;
-
-    margin-bottom: 20px;
   }
 
-  &__tabs li {
+  &__tabs-item {
     display: inline-block;
+    vertical-align: middle;
     width: 25%;
     padding: 15px 0;
+    border-bottom: 5px solid $blue-color;
 
     cursor: pointer;
-    background: $blue-color;
+    background-color: $blue-color;
+  }
+
+  &__tabs-item svg {
+    fill: rgba(255, 255, 255, 0.3) !important;
+  }
+
+  &__tabs-item--active {
+    border-bottom: 5px solid white;
+  }
+
+  &__tabs-item--active svg {
+    fill: white !important;
   }
 
   &__list {
@@ -32,43 +46,194 @@
     flex-direction: row;
     justify-content: space-between;
 
-    padding: 10px;
+    padding: 20px;
     margin-bottom: 20px;
 
     background-color: white;
   }
 
   &__img {
-    flex-basis: 15%;
-
+    display: flex;
+    flex-basis: 10%;
     margin-right: 10px;
+    text-align: center;
   }
 
   &__main {
-    flex-basis: 70%;
+    flex-basis: 85%;
     flex-grow: 1;
+  }
+
+  &__main a {
+    display: block;
+    width: 80%;
+    color: #37474f;
+    text-decoration: none;
+    font-family: Roboto, sans-serif;
   }
 
   &__main p {
     margin: 0;
+    margin-bottom: 5px;
+    font-size: 14px;
+  }
+
+  &__main p:last-child {
+    margin-bottom: 0;
   }
 
   &__more {
     flex-basis: 15%;
     display: flex;
     flex-direction: column;
+    justify-content: space-around;
+    align-items: flex-end;
   }
 
-  // &__info {
-  //
-  // }
-  //
-  // &__info p {
-  //   margin: 0;
-  // }
+  &__time {
+    color: #90a4ae;
+    font-size: 12px;
+  }
+
+  &__star {
+    margin-top: auto;
+  }
+
+  &__star svg {
+    height: 18px !important;
+  }
+
+  &__floating-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+  }
 }
 
 @media (min-width: $screen_md) {
+  .booking-list {
 
+    &__tabs {
+      padding: 5px;
+      border-radius: 4px;
+      font-size: 14px;
+      background-color: white;
+    }
 
+    &__tabs-item {
+      position: relative;
+      padding: 5px 0;
+      border-bottom: none;
+      color: #9cabb3;
+      background-color: inherit;
+    }
+
+    &__tabs-item:hover {
+      color: $blue-color;
+    }
+
+    &__tabs-item::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      right: 0;
+
+      width: 2px;
+      height: 20px;
+      margin-top: -10px;
+
+      background-color: $grey-color;
+    }
+
+    &__tabs-item:last-child::after {
+      display: none;
+    }
+
+    &__tabs-item:last-child {
+      border-right: none;
+    }
+
+    &__tabs-item--active {
+      color: $blue-color;
+    }
+
+    &__tabs-text {
+      position: relative;
+    }
+
+    &__tabs-item--active .booking-list__tabs-text::after {
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      margin-left: -50%;
+
+      width: 100%;
+      height: 2px;
+
+      background-color: $blue-color;
+    }
+
+    &__tabs-badge {
+      display: inline-block;
+      padding: 5px 10px;
+      margin-left: 10px;
+      border-radius: 10px;
+      background-color: $grey-color;
+    }
+
+    &__list {
+      // background-color: $grey-color;
+    }
+
+    &__item {
+      border-radius: 4px;
+      padding: 25px 10px 25px 20px;
+
+      // display: flex;
+      // flex-direction: row;
+      // justify-content: space-between;
+      // margin-bottom: 20px;
+    }
+
+    &__img {
+      justify-content: center;
+      margin-right: 20px;
+      // flex-basis: 10%;
+    }
+
+    &__main {
+      flex-basis: 80%;
+      // flex-grow: 1;
+    }
+
+    &__main a {
+      // width: 80%;
+    }
+
+    &__main p {
+      // margin-bottom: 5px;
+      font-size: 16px;
+    }
+
+    &__more {
+      flex-basis: 20%;
+      flex-direction: row;
+      justify-content: space-around;
+      align-items: center;
+    }
+
+    &__time {
+      font-size: 14px;
+    }
+
+    &__star {
+      margin-top: 0;
+      padding-left: 15px;
+    }
+
+    &__star svg {
+      height: 20px !important;
+    }
+  }
 }

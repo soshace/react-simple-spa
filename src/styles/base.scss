@@ -1,5 +1,6 @@
 body {
   min-width: 320px;
+  background-color: $grey-color;
   // font-size: $font-size;
   // line-height: $line-height;
   // font-family: $font-stack;
@@ -12,11 +13,11 @@ body {
 
 @media (min-width: $screen_md) {
   .content {
-    padding: 20px;
+    padding: 20px 10%;
   }
 
   .content--active {
-    margin-left: 50%;
-    width: 50%;
+    margin-left: 15%;
+    // width: 50%;
   }
 }
