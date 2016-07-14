@@ -22,8 +22,8 @@ class Header extends Component {
 
     let headerStyle = { backgroundColor: "#2979ff", boxShadow: "none"}
     if (navIsOpen && !isMobile) {
-      headerStyle.marginLeft = "20%"
-      headerStyle.width = "80%"
+      headerStyle.marginLeft = "15%"
+      headerStyle.width = "85%"
     }
     if (!isMobile) headerStyle.boxShadow = "rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px"
 

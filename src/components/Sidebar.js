@@ -24,7 +24,7 @@ class Sidebar extends Component {
       padding: 0,
       borderRadius: 2
     }
-    let sidebarStyle = !isMobile && navIsOpen ? { width: "20%" } : null
+    let sidebarStyle = !isMobile && navIsOpen ? { width: "15%" } : null
     let dockedProp = isMobile ? false : true
 
     return (
