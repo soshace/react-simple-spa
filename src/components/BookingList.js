@@ -8,7 +8,7 @@ import UnavailableIcon from 'material-ui/svg-icons/notification/event-busy'
 import ArchiveIcon from 'material-ui/svg-icons/content/archive'
 import StarIcon from 'material-ui/svg-icons/toggle/star'
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert'
-import ContentAdd from 'material-ui/svg-icons/content/add';
+import ContentAdd from 'material-ui/svg-icons/content/add'
 
 class BookingList extends Component {
   state = {
