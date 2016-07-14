@@ -23,6 +23,8 @@ import TeamIcon from 'material-ui/svg-icons/social/group'
 import TimeIcon from 'material-ui/svg-icons/device/access-time'
 import RefIcon from 'material-ui/svg-icons/action/bookmark'
 
+import CheckIcon from 'material-ui/svg-icons/action/check-circle'
+
 class Booking extends Component {
   state = {
     data: [],
@@ -62,26 +64,54 @@ class Booking extends Component {
   }
 
   showMessages = () => {
-
+    const messagesBlock = document.querySelector('.messages')
+    const bookingBlock = document.querySelector('.booking')
+    console.log(messagesBlock)
+    console.log(bookingBlock)
+    bookingBlock.classList.toggle('invisible')
+    messagesBlock.classList.toggle('messages--active')
   }
 
   render() {
+    const { isMobile } = this.props
     const data  = this.state.data
     const name = data.contacts[0].first_name + ' ' + data.contacts[0].last_name
-    const role = data.contacts[0].role
-    const date = data.event_date
-    const place = data.venue
-    const eventType = data.event_type
+    const role = data.contacts[0].role || 'No Info'
+    const date = data.event_date || 'No Info'
+    const place = data.venue || 'No Info'
+    const eventType = data.event_type || 'No Info'
     // ???
-    const paid = 'Paid ' + data.deposit + ' of ' + data.total
-    const daysLeft = Math.round((new Date(date) - new Date()) / 1000 / 60 / 60 / 24) + ' Days Left'
+    const paid = 'Paid ' + data.deposit + ' of ' + data.total  || 'No Info'
+    const daysLeft = Math.round((new Date(date) - new Date()) / 1000 / 60 / 60 / 24) + ' Days Left'  || 'No Info'
+
+    const listOfMessages = data.notes.map((message, i) => {
+      const imgSrc = "https://placehold.it/50x50"
+      const text = message.note
+      const time = message.date_created
+      const messageClass = i%2 ? 'messages__item messages__item--reverse' : 'messages__item'
+
+      return (
+        <li className={messageClass}>
+          <div className="messages__ava">
+            <Avatar src="https://placehold.it/50x50" size={50}/>
+          </div>
+          <div className="messages__text">
+            <p>{text}</p>
+            <p>{time}</p>
+          </div>
+          <div className="messages__actions">
+            <CheckIcon color="green"/>
+          </div>
+        </li>
+      )
+    })
 
     return (
       <div>
         <div className="booking">
           <div className="booking__top">
             <div className="booking__nav">
-              <IconButton onTouchTap={this.showMessages}><BackIcon color="white" /></IconButton>
+              <Link to="/bookings"><IconButton><BackIcon color="white" /></IconButton></Link>
               <IconButton><CloseIcon color="white" /></IconButton>
             </div>
             <div className="booking__user">
@@ -95,7 +125,7 @@ class Booking extends Component {
             </div>
             <div className="booking__actions">
               <IconButton><PhoneIcon color="white" /></IconButton>
-              <IconButton><MessagesIcon color="white" /></IconButton>
+              <IconButton onTouchTap={this.showMessages}><MessagesIcon color="white" /></IconButton>
               <IconButton><NotificationIcon color="white" /></IconButton>
             </div>
           </div>
@@ -117,7 +147,15 @@ class Booking extends Component {
         </div>
 
         <div className="messages">
-          CHAT
+          <div className="messages__header">
+            Header
+          </div>
+          <ul className="messages__list">
+            {listOfMessages}
+          </ul>
+          <div className="messages__input">
+            INPUT
+          </div>
         </div>
       </div>
     )
