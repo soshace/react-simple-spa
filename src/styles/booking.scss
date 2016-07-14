@@ -1,0 +1,44 @@
+.booking {
+
+  &__top {
+    background-color: $blue-color;
+    color: white;
+  }
+
+  &__nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 10px;
+  }
+
+  &__user {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px 15px;
+    margin-left: 10%;
+  }
+
+  &__user-ava {
+    flex-basis: 20%;
+    margin-right: 20px;
+  }
+
+  &__user-name {
+    flex-basis: 80%;
+    flex-grow: 1;
+  }
+
+  &__user p {
+    margin: 0;
+  }
+
+  &__actions {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  &__info {
+    background-color: white;
+  }
+}
