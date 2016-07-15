@@ -1,6 +1,7 @@
 import React, { Component }  from 'react'
 import ReactRouter, { Link } from 'react-router'
 import onWindowResize from '../decorators/onWindowResize'
+import Loading from './Loading'
 
 import { IconButton, Avatar, FloatingActionButton } from 'material-ui'
 import AvailableIcon from 'material-ui/svg-icons/notification/event-available'
@@ -47,6 +48,12 @@ class BookingList extends Component {
   }
 
   render() {
+    if (!this.state.fetched || this.state.fetching) {
+      return (
+        <Loading />
+      )
+    }
+
     const { isMobile } = this.props
     const bookings = this.state.list
     const moreBtn = isMobile ? null : <IconButton><MoreVertIcon color="grey" /></IconButton>

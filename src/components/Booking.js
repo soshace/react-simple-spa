@@ -1,6 +1,7 @@
 import React, { Component }  from 'react'
 import ReactRouter, { Link } from 'react-router'
 import onWindowResize from '../decorators/onWindowResize'
+import Loading from './Loading'
 
 import { IconButton, Avatar, List, ListItem } from 'material-ui'
 
@@ -52,7 +53,6 @@ class Booking extends Component {
     http.onreadystatechange = () => {
     	if (http.readyState == 4 && http.status == 200) {
     		const res = JSON.parse(http.responseText)
-        console.log(res.response)
 
         this.setState({
           fetching: false,
@@ -76,7 +76,12 @@ class Booking extends Component {
   }
 
   render() {
-    // if loaad
+    if (!this.state.fetched || this.state.fetching) {
+      return (
+        <Loading />
+      )
+    }
+
     const { isMobile } = this.props
     const data  = this.state.data
     const name = data.contacts[0].first_name + ' ' + data.contacts[0].last_name

@@ -3,7 +3,7 @@
   &__top {
     position: relative;
     z-index: 10;
-    background: url(https://pp.vk.me/c633624/v633624081/41402/HAfTjbrowTs.jpg);
+    background-image: url(https://pp.vk.me/c633624/v633624081/41402/HAfTjbrowTs.jpg);
     padding: 10px;
     padding-top: 50px;
     color: white;
@@ -17,7 +17,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(41, 121, 255, 0.8);
+    background-color: rgba(41, 121, 255, 0.8);
   }
 
   &__top-user {
@@ -69,7 +69,7 @@
     }
 
     &__top::before {
-      background: rgba(69, 77, 149, 0.4);
+      background-color: rgba(69, 77, 149, 0.4);
     }
 
     &__top-user {
