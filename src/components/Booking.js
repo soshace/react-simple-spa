@@ -24,6 +24,8 @@ import TimeIcon from 'material-ui/svg-icons/device/access-time'
 import RefIcon from 'material-ui/svg-icons/action/bookmark'
 
 import CheckIcon from 'material-ui/svg-icons/action/check-circle'
+import SendIcon from 'material-ui/svg-icons/content/send'
+import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert'
 
 class Booking extends Component {
   state = {
@@ -36,7 +38,7 @@ class Booking extends Component {
   componentDidMount() {
     this.setState({
       fetching: true,
-      error: null,
+      error: '',
       fetched: false
     })
 
@@ -45,7 +47,7 @@ class Booking extends Component {
     const params = 'token=' + this.props.token + '&booking_id=' + this.props.params.id
 
     http.open('POST', url, true)
-    http.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
+    http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded')
 
     http.onreadystatechange = () => {
     	if (http.readyState == 4 && http.status == 200) {
@@ -64,15 +66,17 @@ class Booking extends Component {
   }
 
   showMessages = () => {
-    const messagesBlock = document.querySelector('.messages')
-    const bookingBlock = document.querySelector('.booking')
-    console.log(messagesBlock)
-    console.log(bookingBlock)
-    bookingBlock.classList.toggle('invisible')
-    messagesBlock.classList.toggle('messages--active')
+    if (this.props.isMobile) {
+      const messagesBlock = document.querySelector('.messages')
+      const bookingBlock = document.querySelector('.booking')
+
+      bookingBlock.classList.toggle('invisible')
+      messagesBlock.classList.toggle('messages--active')
+    }
   }
 
   render() {
+    // if loaad
     const { isMobile } = this.props
     const data  = this.state.data
     const name = data.contacts[0].first_name + ' ' + data.contacts[0].last_name
@@ -85,19 +89,19 @@ class Booking extends Component {
     const daysLeft = Math.round((new Date(date) - new Date()) / 1000 / 60 / 60 / 24) + ' Days Left'  || 'No Info'
 
     const listOfMessages = data.notes.map((message, i) => {
-      const imgSrc = "https://placehold.it/50x50"
+      const imgSrc = 'https://placehold.it/50x50'
       const text = message.note
       const time = message.date_created
       const messageClass = i%2 ? 'messages__item messages__item--reverse' : 'messages__item'
 
       return (
-        <li className={messageClass}>
+        <li key={message.note_id} className={messageClass}>
           <div className="messages__ava">
             <Avatar src="https://placehold.it/50x50" size={50}/>
           </div>
-          <div className="messages__text">
-            <p>{text}</p>
-            <p>{time}</p>
+          <div className="messages__content">
+            <p className="messages__text">{text}</p>
+            <p className="messages__time">{time}</p>
           </div>
           <div className="messages__actions">
             <CheckIcon color="green"/>
@@ -113,6 +117,17 @@ class Booking extends Component {
             <div className="booking__nav">
               <Link to="/bookings"><IconButton><BackIcon color="white" /></IconButton></Link>
               <IconButton><CloseIcon color="white" /></IconButton>
+            </div>
+            <div className="booking__contacts">
+              <div>
+                Contact
+              </div>
+              <div>
+                Contact
+              </div>
+              <div>
+                More...
+              </div>
             </div>
             <div className="booking__user">
               <div className="booking__user-ava">
@@ -147,14 +162,29 @@ class Booking extends Component {
         </div>
 
         <div className="messages">
-          <div className="messages__header">
-            Header
-          </div>
-          <ul className="messages__list">
-            {listOfMessages}
-          </ul>
-          <div className="messages__input">
-            INPUT
+          <div className="messages__inner">
+            <div className="messages__header">
+              <IconButton onTouchTap={this.showMessages}><BackIcon color="white" /></IconButton>
+              <IconButton><CloseIcon color="white" /></IconButton>
+            </div>
+            <ul className="messages__list">
+              {listOfMessages}
+            </ul>
+            <form className="messages__form">
+              <div className="messages__form-more">
+                <IconButton style={{ borderRadius: "50%", backgroundColor: "#9babb3" }}>
+                  <MoreVertIcon color="white" />
+                </IconButton>
+              </div>
+              <div className="messages__form-input">
+                <input type="text" placeholder="Write Message"/>
+              </div>
+              <div className="messages__form-submit">
+                <IconButton style={{ borderRadius: "50%", backgroundColor: "#2979ff" }}>
+                  <SendIcon color="white" />
+                </IconButton>
+              </div>
+            </form>
           </div>
         </div>
       </div>

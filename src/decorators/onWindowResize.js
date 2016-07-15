@@ -26,7 +26,7 @@ export default (Component) => class OneOpen extends ReactComponent {
   }
 
   isMobile = () => {
-    const isMobile = this.state.vWidth < 768 ? true : false
+    const isMobile = this.state.vWidth < 1024 ? true : false
     return isMobile
   }
 

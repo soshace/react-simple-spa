@@ -21,7 +21,7 @@ class BookingList extends Component {
   componentDidMount() {
     this.setState({
       fetching: true,
-      error: null,
+      error: '',
       fetched: false
     })
 
@@ -30,7 +30,7 @@ class BookingList extends Component {
     const params = 'band_id=6&type=enquiry&mode=available&token' + this.props.token
 
     http.open('POST', url, true)
-    http.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
+    http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded')
 
     http.onreadystatechange = () => {
     	if (http.readyState == 4 && http.status == 200) {
