@@ -3,7 +3,7 @@ import ReactRouter, { Link } from 'react-router'
 import onWindowResize from '../decorators/onWindowResize'
 import Loading from './Loading'
 
-import { IconButton, Avatar, List, ListItem } from 'material-ui'
+import { IconButton, Avatar, List, ListItem, TextField } from 'material-ui'
 
 import BackIcon from 'material-ui/svg-icons/hardware/keyboard-backspace'
 import CloseIcon from 'material-ui/svg-icons/navigation/close'
@@ -28,6 +28,13 @@ import CheckIcon from 'material-ui/svg-icons/action/check-circle'
 import SendIcon from 'material-ui/svg-icons/content/send'
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert'
 import MoreHorizIcon from 'material-ui/svg-icons/navigation/more-horiz'
+
+// for form more
+import SmileIcon from 'material-ui/svg-icons/editor/insert-emoticon'
+import TemplatesIcon from 'material-ui/svg-icons/action/speaker-notes'
+import AttachIcon from 'material-ui/svg-icons/editor/attach-file'
+import ListBulletedIcon from 'material-ui/svg-icons/editor/format-list-bulleted'
+import TimerIcon from 'material-ui/svg-icons/av/av-timer'
 
 class Booking extends Component {
   state = {
@@ -93,6 +100,19 @@ class Booking extends Component {
     // ???
     const paid = 'Paid ' + data.deposit + ' of ' + data.total  || 'No Info'
     const daysLeft = Math.round((new Date(date) - new Date()) / 1000 / 60 / 60 / 24) + ' Days Left'  || 'No Info'
+    const inputStyles = {
+      underlineStyle: {
+        borderColor: '#2074fe',
+      },
+      floatingLabelStyle: {
+        color: '#4286fe',
+      },
+      floatingLabelFocusStyle: {
+        color: '#4286fe',
+      },
+    }
+    const btnSendStyle = isMobile ? { borderRadius: "50%", backgroundColor: "#2979ff" } : { backgroundColor: "white" }
+    const iconSendColor = isMobile ? "white" : "#2979ff"
 
     const listOfMessages = data.notes.map((message, i) => {
       const imgSrc = 'https://placehold.it/50x50'
@@ -185,11 +205,21 @@ class Booking extends Component {
                 </IconButton>
               </div>
               <div className="messages__form-input">
-                <input type="text" placeholder="Write Message"/>
+                <TextField className="messages__form-input-desktop"
+                  floatingLabelText="Write Message"
+                  underlineStyle={inputStyles.underlineStyle}
+                  underlineFocusStyle={inputStyles.underlineStyle}
+                  floatingLabelStyle={inputStyles.floatingLabelStyle}
+                  floatingLabelFocusStyle={inputStyles.floatingLabelFocusStyle}
+                  style={{
+                    width: '100%'
+                  }}
+                />
+              <input className="messages__form-input-mobile" type="text" placeholder="Write Message"/>
               </div>
               <div className="messages__form-submit">
-                <IconButton style={{ borderRadius: "50%", backgroundColor: "#2979ff" }}>
-                  <SendIcon color="white" />
+                <IconButton style={btnSendStyle}>
+                  <SendIcon color={iconSendColor} />
                 </IconButton>
               </div>
             </form>

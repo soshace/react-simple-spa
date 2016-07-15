@@ -164,7 +164,7 @@
     border-right: 10px solid transparent;
   }
 
-  &__form-input input {
+  &__form-input-mobile {
     box-sizing: border-box;
     width: 100%;
     padding: 16px 10px;
@@ -173,7 +173,149 @@
     outline: none;
   }
 
+  &__form-input-desktop {
+    display: none !important;
+  }
+
   &__form-submit {
 
+  }
+}
+
+@media (min-width: $screen_md) {
+  .messages {
+    display: inline-block;
+    vertical-align: top;
+    width: 60%;
+    //max-width: 700px;
+
+    &__inner {
+      display: flex;
+      flex-direction: column-reverse;
+    }
+
+    &__header {
+      display: none;
+    }
+
+    &__list {
+      padding: 20px 4%;
+
+      border-radius: 4px;
+      background-color: white;
+      box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
+    }
+
+    &__item {
+      margin-bottom: 40px;
+    }
+
+    &__item:last-child {
+      margin-bottom: 40px;;
+    }
+
+    &__ava {
+      // flex-basis: 8%;
+      // margin-right: 2%;
+      // display: flex;
+    }
+
+    &__item--reverse .messages__ava {
+      // order: 3;
+      // margin-right: auto;
+      // margin-left: 2%;
+      // justify-content: flex-start;
+    }
+
+    &__content {
+      // max-width: 85%;
+      // flex-basis: 90%;
+      // flex-grow: 1;
+      // padding: 10px 2%;
+      // margin-right: auto;
+      // border-radius: 4px;
+      // color: white;
+      // background-color: $blue-color;
+    }
+
+    &__item--reverse .messages__content {
+      // order: 2;
+
+      // margin-right: 0;
+      // margin-left: auto;
+      // color: black;
+      background-color: $grey-color;
+    }
+
+    &__item--reverse .messages__content::after {
+      border-top-color: $grey-color;
+    }
+
+    &__time {
+      // margin: 0;
+      // color: #9BABF0;
+      // font-size: 10px;
+      // font-weight: 100;
+    }
+
+    &__text {
+      // margin: 0;
+      // margin-bottom: 10px;
+    }
+
+    &__item--reverse .messages__time {
+      //color: #9babb3;
+    }
+
+    &__actions {
+      // order: 1;
+      // position: absolute;
+      // top: 55px;
+      // left: 15px;
+    }
+
+    &__item--reverse .messages__actions {
+      // display: none;
+      // left: auto;
+      // right: 15px;
+    }
+
+    &__form {
+      position: static;
+      // display: flex;
+      // align-items: center;
+      // width: 100%;
+      flex-direction: column;
+      padding: 20px 4%;
+      margin-bottom: 30px;
+      border-radius: 4px;
+      background-color: white;
+      box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
+    }
+
+    &__form-more {
+      align-self: flex-start;
+      order: 2;
+    }
+
+    &__form-input {
+      order: 1;
+      width: 100%;
+      flex-grow: 0;
+      // padding: 0 10px;
+    }
+
+    &__form-input-mobile {
+      display: none;
+    }
+
+    &__form-input-desktop {
+      display: block !important;
+    }
+
+    &__form-submit {
+      order: 3;
+      align-self: flex-end;
+    }
   }
 }
