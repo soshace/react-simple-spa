@@ -27,6 +27,7 @@ import RefIcon from 'material-ui/svg-icons/action/bookmark'
 import CheckIcon from 'material-ui/svg-icons/action/check-circle'
 import SendIcon from 'material-ui/svg-icons/content/send'
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert'
+import MoreHorizIcon from 'material-ui/svg-icons/navigation/more-horiz'
 
 class Booking extends Component {
   state = {
@@ -125,13 +126,15 @@ class Booking extends Component {
             </div>
             <div className="booking__contacts">
               <div>
-                Contact
+                <Avatar src="https://placehold.it/30x30" size={30}/>
               </div>
               <div>
-                Contact
+                <Avatar src="https://placehold.it/30x30" size={30}/>
               </div>
               <div>
-                More...
+                <IconButton style={{ borderRadius: "50%", backgroundColor: "#2979ff", width: 30, height: 30, padding: 5 }} iconStyle={{ width: 20, height: 20 }}>
+                  <MoreHorizIcon color="white" />
+                </IconButton>
               </div>
             </div>
             <div className="booking__user">

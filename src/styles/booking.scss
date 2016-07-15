@@ -1,5 +1,5 @@
 .booking {
-  display: none; ///!
+
   &__top {
     background-color: $blue-color;
     color: white;
@@ -11,21 +11,25 @@
     padding: 0 10px;
   }
 
+  &__contacts {
+    display: none;
+  }
+
   &__user {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     padding: 10px 15px;
     margin-left: 10%;
   }
 
   &__user-ava {
-    flex-basis: 20%;
+    flex-basis: 30%;
     margin-right: 20px;
   }
 
   &__user-name {
-    flex-basis: 80%;
+    flex-basis: 70%;
     flex-grow: 1;
   }
 
@@ -40,5 +44,71 @@
 
   &__info {
     background-color: white;
+  }
+}
+
+@media (min-width: $screen_md) {
+  .booking {
+    display: inline-block;
+    width: 35%;
+    //max-width: 400px;
+    margin-right: 5%;
+    border-radius: 4px;
+
+    &__top {
+      position: relative;
+      z-index: 10;
+
+      padding-top: 20px;
+      padding-bottom: 20px;
+      background-image: url('https://pp.vk.me/c633624/v633624081/41402/HAfTjbrowTs.jpg');
+    }
+
+    &__top::before {
+      content: '';
+      position: absolute;
+      z-index: 5;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(69, 77, 149, 0.4);
+    }
+
+    &__nav {
+      display: none;
+    }
+
+    &__contacts {
+      display: block;
+      text-align: right;
+      position: relative;
+      z-index: 10;
+    }
+
+    &__contacts div {
+      display: inline-block;
+      vertical-align: middle;
+      margin-right: 10px;
+      height: 30px;
+    }
+
+    &__user {
+      position: relative;
+      z-index: 10;
+      // padding: 10px 15px;
+      // margin-left: 10%;
+    }
+
+    &__user-ava {
+    }
+
+    &__user-name {
+    }
+
+    &__actions {
+      position: relative;
+      z-index: 10;
+    }
   }
 }
