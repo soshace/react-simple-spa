@@ -62,7 +62,11 @@
 
       padding-top: 20px;
       padding-bottom: 20px;
-      background-image: url('https://pp.vk.me/c633624/v633624081/41402/HAfTjbrowTs.jpg');
+      background: url('https://pp.vk.me/c630231/v630231081/32d68/2DvHIqH67GE.jpg') no-repeat center center fixed; 
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
     }
 
     &__top::before {

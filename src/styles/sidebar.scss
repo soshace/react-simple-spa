@@ -3,7 +3,11 @@
   &__top {
     position: relative;
     z-index: 10;
-    background-image: url(https://pp.vk.me/c633624/v633624081/41402/HAfTjbrowTs.jpg);
+    background: url('https://pp.vk.me/c633624/v633624081/41402/HAfTjbrowTs.jpg') no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
     padding: 10px;
     padding-top: 50px;
     color: white;

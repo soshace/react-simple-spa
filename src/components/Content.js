@@ -1,23 +1,20 @@
 import React, { Component, Children, cloneElement } from 'react'
 
-class Content extends Component {
-
-  render() {
-    const { children, navIsOpen, token } = this.props
-    const childrenWithData = Children.map(children, (child) => {
-      return cloneElement(child, {
-        token: token
-      })
+function Content(props) {
+  const { children, navIsOpen, token } = props
+  const childrenWithData = Children.map(children, (child) => {
+    return cloneElement(child, {
+      token: token
     })
+  })
 
-    const mainClass = navIsOpen ? 'content content--active' : 'content'
-    
-    return (
-      <main className={mainClass}>
-        {childrenWithData}
-      </main>
-    )
-  }
+  const mainClass = navIsOpen ? 'content content--active' : 'content'
+
+  return (
+    <main className={mainClass}>
+      {childrenWithData}
+    </main>
+  )
 }
 
 export default Content

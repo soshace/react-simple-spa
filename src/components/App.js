@@ -33,23 +33,11 @@ class App extends Component {
 
     http.open('POST', url, true);
 
-    // Send the proper header information along with the request
-    http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    // http.setRequestHeader("Content-length", params.length);
-    // http.setRequestHeader("Connection", "close");
+    http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded')
 
-    http.onreadystatechange = () => {//Call a function when the state changes.
+    http.onreadystatechange = () => {
     	if (http.readyState == 4 && http.status == 200) {
     		const res = JSON.parse(http.responseText)
-
-        // console.log('         *** *** ***')
-        // console.log('error:')
-        // console.log(res.error)
-        // console.log('succes:')
-        // console.log(res.success)
-        // console.log('token:')
-        // console.log(res.response.token)
-        // console.log('         *** *** ***')
 
         this.setState({
           fetching: false,
