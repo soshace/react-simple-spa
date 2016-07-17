@@ -61,7 +61,6 @@ class Booking extends Component {
     http.onreadystatechange = () => {
     	if (http.readyState == 4 && http.status == 200) {
     		const res = JSON.parse(http.responseText)
-
         this.setState({
           fetching: false,
           error: res.error,
@@ -94,12 +93,13 @@ class Booking extends Component {
     const data  = this.state.data
     const name = data.contacts[0].first_name + ' ' + data.contacts[0].last_name
     const role = data.contacts[0].role || 'No Info'
-    const date = data.event_date || 'No Info'
+    const date = new Date(data.event_date).toUTCString().slice(0, 16) || 'No Info'
     const place = data.venue || 'No Info'
     const eventType = data.event_type || 'No Info'
-    // ???
+    const workPackage = 'Band & DJ Package'
     const paid = 'Paid ' + data.deposit + ' of ' + data.total  || 'No Info'
     const daysLeft = Math.round((new Date(date) - new Date()) / 1000 / 60 / 60 / 24) + ' Days Left'  || 'No Info'
+    const notesPart = data.notes[data.notes.length - 1].note
     const inputStyles = {
       underlineStyle: {
         borderColor: '#2074fe',
@@ -117,8 +117,10 @@ class Booking extends Component {
     const listOfMessages = data.notes.map((message, i) => {
       const imgSrc = 'https://placehold.it/50x50'
       const text = message.note
-      const time = message.date_created
-      const messageClass = i%2 ? 'messages__item messages__item--reverse' : 'messages__item'
+      const date = new Date(message.date_created.replace(' ', 'T'))
+      const dayOfTheWeek = date.toUTCString().slice(0, 3)
+      const time = dayOfTheWeek + ' ' + message.date_created.split(' ')[1].slice(0, 5)
+      const messageClass = message.type === 'system' ? 'messages__item' : 'messages__item messages__item--reverse'
 
       return (
         <li key={message.note_id} className={messageClass}>
@@ -177,14 +179,14 @@ class Booking extends Component {
               <ListItem primaryText={date} leftIcon={<CalendarIcon />} />
               <ListItem primaryText={place} leftIcon={<PlaceIcon />} />
               <ListItem primaryText={eventType} leftIcon={<EventIcon />} />
-              <ListItem primaryText="???" leftIcon={<WorkIcon />} />
+              <ListItem primaryText={workPackage} leftIcon={<WorkIcon />} />
               <ListItem primaryText="???" leftIcon={<ContactIcon />} />
               <ListItem primaryText={paid} leftIcon={<PayIcon />} />
               <ListItem primaryText={daysLeft} leftIcon={<DaysLeftIcon />} />
-              <ListItem primaryText="Notes???" leftIcon={<NoteIcon />} />
-              <ListItem primaryText="Team???" leftIcon={<TeamIcon />} />
-              <ListItem primaryText="Timeline???" leftIcon={<TimeIcon />} />
-              <ListItem primaryText="Ref???" leftIcon={<RefIcon />} />
+              <ListItem primaryText={notesPart} leftIcon={<NoteIcon />} />
+              <ListItem primaryText="Team" leftIcon={<TeamIcon />} />
+              <ListItem primaryText="Timeline" leftIcon={<TimeIcon />} />
+              <ListItem primaryText="???" leftIcon={<RefIcon />} />
             </List>
           </div>
         </div>

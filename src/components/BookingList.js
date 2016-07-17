@@ -36,11 +36,49 @@ class BookingList extends Component {
     http.onreadystatechange = () => {
     	if (http.readyState == 4 && http.status == 200) {
     		const res = JSON.parse(http.responseText)
+        const bookings = res.response
+        let dates = []
+
+        bookings.forEach((booking, i) => {
+          let bookDate = booking.date.split('/')
+          bookDate = bookDate[2] + '-' + bookDate[1] + '-' + bookDate[0]
+
+          if (i === 0) {
+            dates.push({
+              date: bookDate,
+              bookings: []
+            })
+          } else {
+            if (!(
+              dates.some((item) => {
+                return item.date === bookDate
+              })
+            )) {
+              dates.push({
+                date: bookDate,
+                bookings: []
+              })
+            }
+          }
+        })
+
+        bookings.forEach((booking, i) => {
+          let bookDate = booking.date.split('/')
+          bookDate = bookDate[2] + '-' + bookDate[1] + '-' + bookDate[0]
+          dates.forEach((item, i) => {
+            if (item.date === bookDate) {
+              dates[i].bookings.push(booking)
+            }
+          })
+        })
+
+        dates.sort((a, b) => new Date(a.date) - new Date(b.date))
+
         this.setState({
           fetching: false,
           error: res.error,
           fetched: res.success,
-          list: res.response.slice(1, 21) // take only 20 for now
+          list: dates.slice(1, 21) // take only 20 for now
         })
     	}
     }
@@ -55,41 +93,58 @@ class BookingList extends Component {
     }
 
     const { isMobile } = this.props
-    const bookings = this.state.list
+    const bookingsByDates = this.state.list
     const moreBtn = isMobile ? null : <IconButton><MoreVertIcon color="grey" /></IconButton>
     const tabBtnStyle = isMobile ? null : { display: "none" }
     const avaSize = isMobile ? 50 : 70
 
-    const listItems = bookings.map((booking) => {
-      const curDate = new Date(booking.enquiry_date)
-      const time = curDate.getHours() + ':' + curDate.getMinutes()
-      const date = curDate.toUTCString().slice(0, 16)
+    const listItems = bookingsByDates.map((item) => {
+      let id = ''
+      item.bookings.forEach((booking) => {
+        id+=booking.id
+      })
+
+      const listOfBookings = item.bookings.map((booking) => {
+        const curDate = new Date(booking.enquiry_date.replace(' ', 'T'))
+        const time = curDate.getHours() + ':' + curDate.getMinutes()
+        const date = curDate.toUTCString().slice(0, 16)
+
+        return (
+          <li key={booking.id}>
+            <div className="booking-list__img">
+              <Link to={'/bookings/' + booking.id}>
+                <Avatar src="https://placehold.it/50x50" size={avaSize}/>
+              </Link>
+            </div>
+            <div className="booking-list__main">
+              <Link to={'/bookings/' + booking.id}>
+                <p><strong>{booking.first_name + ' ' + booking.last_name}</strong></p>
+                <p>{date}</p>
+                <p>{booking.venue}</p>
+              </Link>
+            </div>
+            <div className="booking-list__more">
+              <div className="booking-list__time">
+                {time}
+              </div>
+              <div className="booking-list__star">
+                <StarIcon color="#ffca28"/>
+              </div>
+              <div className="booking-list__more-btn">
+                {moreBtn}
+              </div>
+            </div>
+          </li>
+        )
+      })
+
 
       return (
-        <li key={booking.id} className="booking-list__item">
-          <div className="booking-list__img">
-            <Link to={'/bookings/' + booking.id}>
-              <Avatar src="https://placehold.it/50x50" size={avaSize}/>
-            </Link>
-          </div>
-          <div className="booking-list__main">
-            <Link to={'/bookings/' + booking.id}>
-              <p><strong>{booking.first_name + ' ' + booking.last_name}</strong></p>
-              <p>{date}</p>
-              <p>{booking.venue}</p>
-            </Link>
-          </div>
-          <div className="booking-list__more">
-            <div className="booking-list__time">
-              {time}
-            </div>
-            <div className="booking-list__star">
-              <StarIcon color="#ffca28"/>
-            </div>
-            <div className="booking-list__more-btn">
-              {moreBtn}
-            </div>
-          </div>
+        <li key={id} className="booking-list__item">
+          <p>{item.date}</p>
+          <ul>
+            {listOfBookings}
+          </ul>
         </li>
       )
     })

@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import Header from './Header'
 import Sidebar from './Sidebar'
 import Content from './Content'
-// import assign from 'object-assign'
+import Loading from './Loading'
 
 class App extends Component {
   state = {
@@ -11,7 +11,9 @@ class App extends Component {
     fetching: false,
     error: '',
     fetched: false,
-    token: ''
+    token: '',
+    userName:'',
+    userType: ''
   }
 
   toggleNav = (ev) => {
@@ -43,7 +45,9 @@ class App extends Component {
           fetching: false,
           error: res.error,
           fetched: res.success,
-          token: res.response.token
+          token: res.response.token,
+          userName: res.response.first_name + ' ' + res.response.last_name,
+          userType: res.response.musician_type
         })
     	}
     }
@@ -51,9 +55,15 @@ class App extends Component {
   }
 
   render() {
+    if (!this.state.fetched || this.state.fetching) {
+      return (
+        <Loading />
+      )
+    }
+
     return (
       <div>
-        <Sidebar navIsOpen={this.state.navIsOpen} toggleNav={this.toggleNav} />
+        <Sidebar navIsOpen={this.state.navIsOpen} toggleNav={this.toggleNav} userName={this.state.userName} userType={this.state.userType}/>
         <Header navIsOpen={this.state.navIsOpen} toggleNav={this.toggleNav} />
         <Content token={this.state.token} children={this.props.children} navIsOpen={this.state.navIsOpen}/>
       </div>

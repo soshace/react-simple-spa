@@ -12,7 +12,7 @@ import CalendarIcon from 'material-ui/svg-icons/action/event'
 import FinanceIcon from 'material-ui/svg-icons/action/account-balance'
 
 function Sidebar(props) {
-  const { navIsOpen, toggleNav, isMobile } = props
+  const { navIsOpen, toggleNav, isMobile, userName, userType } = props
 
   let accountBtnColor = isMobile ? null : '#2979ff'
   let settingsBtnStyle = isMobile ? null : {
@@ -30,11 +30,11 @@ function Sidebar(props) {
       <div className="sidebar__top">
         <div className="sidebar__top-user">
           <div className="sidebar__top-img">
-            <Avatar src="https://placehold.it/50x50" size={50}/>
+            <Avatar src="https://pp.vk.me/c10408/u4172580/-6/x_ee97448e.jpg" size={50}/>
           </div>
           <div className="sidebar__top-name">
-            <p>Name Surname</p>
-            <small>Admin</small>
+            <p>{userName}</p>
+            <small>{userType}</small>
           </div>
         </div>
         <div className="sidebar__top-btn">
