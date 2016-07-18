@@ -99,7 +99,10 @@ class Booking extends Component {
     const workPackage = 'Band & DJ Package'
     const paid = 'Paid ' + data.deposit + ' of ' + data.total  || 'No Info'
     const daysLeft = Math.round((new Date(date) - new Date()) / 1000 / 60 / 60 / 24) + ' Days Left'  || 'No Info'
-    const notesPart = data.notes[data.notes.length - 1].note
+    let notesPart = 'No info'
+    if (data.notes.length > 0) {
+      notesPart = data.notes[data.notes.length - 1].note
+    }
     const inputStyles = {
       underlineStyle: {
         borderColor: '#2074fe',
@@ -115,7 +118,7 @@ class Booking extends Component {
     const iconSendColor = isMobile ? "white" : "#2979ff"
 
     const listOfMessages = data.notes.map((message, i) => {
-      const imgSrc = 'https://placehold.it/50x50'
+      const imgSrc = message.type === 'system' ? 'https://pp.vk.me/c10408/u4172580/-6/x_ee97448e.jpg' : 'https://placehold.it/50x50'
       const text = message.note
       const date = new Date(message.date_created.replace(' ', 'T'))
       const dayOfTheWeek = date.toUTCString().slice(0, 3)

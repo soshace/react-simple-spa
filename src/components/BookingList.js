@@ -38,10 +38,10 @@ class BookingList extends Component {
     		const res = JSON.parse(http.responseText)
         const bookings = res.response
         let dates = []
-
+        //console.log(bookings)
         bookings.forEach((booking, i) => {
-          let bookDate = booking.date.split('/')
-          bookDate = bookDate[2] + '-' + bookDate[1] + '-' + bookDate[0]
+          let bookDate = booking.enquiry_date.split(' ')[0]
+          //bookDate = bookDate[2] + '-' + bookDate[1] + '-' + bookDate[0]
 
           if (i === 0) {
             dates.push({
@@ -63,8 +63,9 @@ class BookingList extends Component {
         })
 
         bookings.forEach((booking, i) => {
-          let bookDate = booking.date.split('/')
-          bookDate = bookDate[2] + '-' + bookDate[1] + '-' + bookDate[0]
+          let bookDate = booking.enquiry_date.split(' ')[0]
+          //let bookDate = booking.date.split('/')
+          //bookDate = bookDate[2] + '-' + bookDate[1] + '-' + bookDate[0]
           dates.forEach((item, i) => {
             if (item.date === bookDate) {
               dates[i].bookings.push(booking)
@@ -99,25 +100,26 @@ class BookingList extends Component {
     const avaSize = isMobile ? 50 : 70
 
     const listItems = bookingsByDates.map((item) => {
-      let id = ''
+      let id = +new Date()
+      const commonDate = new Date(item.date).toUTCString().slice(0, 16)
       item.bookings.forEach((booking) => {
         id+=booking.id
       })
 
       const listOfBookings = item.bookings.map((booking) => {
         const curDate = new Date(booking.enquiry_date.replace(' ', 'T'))
-        const time = curDate.getHours() + ':' + curDate.getMinutes()
         const date = curDate.toUTCString().slice(0, 16)
+        const time = booking.enquiry_date.slice(10, 16)
 
         return (
-          <li key={booking.id}>
+          <li key={booking.id} className="booking-list__booking">
             <div className="booking-list__img">
-              <Link to={'/bookings/' + booking.id}>
+              <Link to={"/bookings/" + booking.id}>
                 <Avatar src="https://placehold.it/50x50" size={avaSize}/>
               </Link>
             </div>
             <div className="booking-list__main">
-              <Link to={'/bookings/' + booking.id}>
+              <Link to={"/bookings/" + booking.id}>
                 <p><strong>{booking.first_name + ' ' + booking.last_name}</strong></p>
                 <p>{date}</p>
                 <p>{booking.venue}</p>
@@ -141,8 +143,8 @@ class BookingList extends Component {
 
       return (
         <li key={id} className="booking-list__item">
-          <p>{item.date}</p>
-          <ul>
+          <p className="booking-list__item-date">{commonDate}</p>
+          <ul className="booking-list__item-list">
             {listOfBookings}
           </ul>
         </li>
