@@ -36,9 +36,15 @@
   }
 
   &__ava {
-    flex-basis: 8%;
+    flex-basis: 15%;
     margin-right: 2%;
     display: flex;
+    max-width: 70px;
+  }
+
+  &__ava img {
+    width: 90% !important;
+    height: 90% !important;
   }
 
   &__item--reverse .messages__ava {
@@ -52,7 +58,7 @@
     @include longWords();
     position: relative;
     max-width: 85%;
-    flex-basis: 90%;
+    flex-basis: 83%;
     flex-grow: 1;
     padding: 10px 2%;
     margin-right: auto;
@@ -120,8 +126,8 @@
   &__actions {
     // order: 1;
     position: absolute;
-    top: 55px;
-    left: 15px;
+    top: 65px;
+    left: 10px;
   }
 
   &__item--reverse .messages__actions {
@@ -178,8 +184,8 @@
     display: none !important;
   }
 
-  &__form-submit {
-
+  &__form-submit-more {
+    display: none;
   }
 }
 
@@ -187,8 +193,7 @@
   .messages {
     display: inline-block;
     vertical-align: top;
-    width: 60%;
-    //max-width: 700px;
+    width: 65%;
 
     &__inner {
       display: flex;
@@ -215,36 +220,7 @@
       margin-bottom: 40px;;
     }
 
-    &__ava {
-      // flex-basis: 8%;
-      // margin-right: 2%;
-      // display: flex;
-    }
-
-    &__item--reverse .messages__ava {
-      // order: 3;
-      // margin-right: auto;
-      // margin-left: 2%;
-      // justify-content: flex-start;
-    }
-
-    &__content {
-      // max-width: 85%;
-      // flex-basis: 90%;
-      // flex-grow: 1;
-      // padding: 10px 2%;
-      // margin-right: auto;
-      // border-radius: 4px;
-      // color: white;
-      // background-color: $blue-color;
-    }
-
     &__item--reverse .messages__content {
-      // order: 2;
-
-      // margin-right: 0;
-      // margin-left: auto;
-      // color: black;
       background-color: $grey-color;
     }
 
@@ -252,41 +228,20 @@
       border-top-color: $grey-color;
     }
 
-    &__time {
-      // margin: 0;
-      // color: #9BABF0;
-      // font-size: 10px;
-      // font-weight: 100;
-    }
-
-    &__text {
-      // margin: 0;
-      // margin-bottom: 10px;
-    }
-
-    &__item--reverse .messages__time {
-      //color: #9babb3;
+    &__content {
+      max-width: 78%;
     }
 
     &__actions {
-      // order: 1;
-      // position: absolute;
-      // top: 55px;
-      // left: 15px;
-    }
-
-    &__item--reverse .messages__actions {
-      // display: none;
-      // left: auto;
-      // right: 15px;
+      top: 33px;
+      left: auto;
+      right: -15px;
     }
 
     &__form {
       position: static;
-      // display: flex;
-      // align-items: center;
-      // width: 100%;
       flex-direction: column;
+      box-sizing: border-box;
       padding: 20px 4%;
       margin-bottom: 30px;
       border-radius: 4px;
@@ -295,8 +250,9 @@
     }
 
     &__form-more {
-      align-self: flex-start;
-      order: 2;
+      // align-self: flex-start;
+      // order: 2;
+      display: none;
     }
 
     &__form-input {
@@ -312,11 +268,98 @@
 
     &__form-input-desktop {
       display: block !important;
+      margin-bottom: 20px;
     }
 
     &__form-submit {
+      position: relative;
+      width: 100%;
+      display: flex;
       order: 3;
-      align-self: flex-end;
+      //align-self: flex-end;
+    }
+
+    &__form-submit-more {
+      display: flex;
+      //flex-grow: 1;
+      flex-basis: 90%;
+    }
+
+    &__form-submit-sub {
+      flex-basis: 10%;
+    }
+
+    &__form-submit-sub button {
+      margin-left: auto !important;
+    }
+
+    &__form-submit-more button {
+      position: relative;
+    }
+
+    &__form-submit-more button:last-child {
+      margin-left: auto !important;
+    }
+
+    &__form-submit-more button::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      right: 0;
+
+      width: 1px;
+      height: 16px;
+      margin-top: -8px;
+
+      background-color: grey;
+    }
+
+    &__form-submit-more button:nth-child(5)::after {
+      width: 0;
+    }
+
+    &__form-submit-templates {
+      position: absolute;
+      z-index: 10;
+      top: -2px;
+      left: 37px;
+      background-color: white;
+      box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
+    }
+
+    &__form-submit-templates-top {
+      padding: 0 15px;
+      border-bottom: 1px solid $grey-color;
+    }
+
+    &__form-submit-templates-top button {
+      display: inline-block;
+      padding-top: 15px !important;
+      vertical-align: top;
+    }
+
+    &__form-submit-templates-top button:last-child {
+      margin-left: 30px !important;
+    }
+
+    &__form-submit-templates-top p {
+      display: inline-block;
+      vertical-align: top;
+      color: grey;
+    }
+
+    &__form-submit-templates-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      padding: 0 25px;
+    }
+
+    &__form-submit-templates-list li {
+      padding: 10px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
   }
 }

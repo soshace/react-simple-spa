@@ -20,11 +20,7 @@ body {
 @media (min-width: $screen_md) {
   .content {
     display: flex;
-    padding: 20px 10%;
-  }
-
-  .content div {
-    //flex-grow: 1;
+    padding: 20px 11%;
   }
 
   .content--active {

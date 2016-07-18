@@ -35,6 +35,10 @@ import TemplatesIcon from 'material-ui/svg-icons/action/speaker-notes'
 import AttachIcon from 'material-ui/svg-icons/editor/attach-file'
 import ListBulletedIcon from 'material-ui/svg-icons/editor/format-list-bulleted'
 import TimerIcon from 'material-ui/svg-icons/av/av-timer'
+import DeleteIcon from 'material-ui/svg-icons/action/delete'
+import AddIcon from 'material-ui/svg-icons/content/add'
+import EditIcon from 'material-ui/svg-icons/editor/mode-edit'
+
 
 class Booking extends Component {
   state = {
@@ -82,6 +86,11 @@ class Booking extends Component {
     }
   }
 
+  showMessageTemplates = () => {
+    const templates = document.querySelector('.messages__form-submit-templates')
+    templates.classList.toggle('invisible')
+  }
+
   render() {
     if (!this.state.fetched || this.state.fetching) {
       return (
@@ -114,8 +123,10 @@ class Booking extends Component {
         color: '#4286fe',
       },
     }
-    const btnSendStyle = isMobile ? { borderRadius: "50%", backgroundColor: "#2979ff" } : { backgroundColor: "white" }
-    const iconSendColor = isMobile ? "white" : "#2979ff"
+
+    const btnSendStyle = isMobile ? { borderRadius: '50%', backgroundColor: '#2979ff' } : { backgroundColor: 'white' }
+    const iconSendColor = isMobile ? 'white' : '#2979ff'
+    const iconMessageActionsColor = 'grey'
 
     const listOfMessages = data.notes.map((message, i) => {
       const imgSrc = message.type === 'system' ? 'https://pp.vk.me/c10408/u4172580/-6/x_ee97448e.jpg' : 'https://placehold.it/50x50'
@@ -128,7 +139,7 @@ class Booking extends Component {
       return (
         <li key={message.note_id} className={messageClass}>
           <div className="messages__ava">
-            <Avatar src="https://placehold.it/50x50" size={50}/>
+            <Avatar src="https://placehold.it/50x50" />
           </div>
           <div className="messages__content">
             <p className="messages__text">{text}</p>
@@ -223,9 +234,71 @@ class Booking extends Component {
               <input className="messages__form-input-mobile" type="text" placeholder="Write Message"/>
               </div>
               <div className="messages__form-submit">
-                <IconButton style={btnSendStyle}>
-                  <SendIcon color={iconSendColor} />
-                </IconButton>
+                <div className="messages__form-submit-templates invisible">
+                  <div className="messages__form-submit-templates-top">
+                    <IconButton style={btnSendStyle} onTouchTap={this.showMessageTemplates}>
+                      <TemplatesIcon color={iconMessageActionsColor} />
+                    </IconButton>
+                    <p>Message Templates</p>
+                    <IconButton style={btnSendStyle}>
+                      <AddIcon color="#2979ff" />
+                    </IconButton>
+
+                  </div>
+                  <ul className="messages__form-submit-templates-list">
+                    <li>Hello
+                      <IconButton style={btnSendStyle}>
+                        <DeleteIcon color={iconMessageActionsColor} />
+                      </IconButton>
+                    </li>
+                    <li>Goodbye
+                      <IconButton style={btnSendStyle}>
+                        <DeleteIcon color={iconMessageActionsColor} />
+                      </IconButton>
+                    </li>
+                    <li>Thank you
+                      <IconButton style={btnSendStyle}>
+                        <DeleteIcon color={iconMessageActionsColor} />
+                      </IconButton>
+                    </li>
+                    <li>How are you?
+                      <IconButton style={btnSendStyle}>
+                        <DeleteIcon color={iconMessageActionsColor} />
+                      </IconButton>
+                    </li>
+                    <li>I have sent you a message
+                      <IconButton style={btnSendStyle}>
+                        <DeleteIcon color={iconMessageActionsColor} />
+                      </IconButton>
+                    </li>
+                  </ul>
+                </div>
+                <div className="messages__form-submit-more">
+                  <IconButton style={btnSendStyle}>
+                    <SmileIcon color={iconMessageActionsColor} />
+                  </IconButton>
+                  <IconButton style={btnSendStyle} onTouchTap={this.showMessageTemplates}>
+                    <TemplatesIcon color={iconMessageActionsColor} />
+                  </IconButton>
+                  <IconButton style={btnSendStyle}>
+                    <AttachIcon color={iconMessageActionsColor} />
+                  </IconButton>
+                  <IconButton style={btnSendStyle}>
+                    <ListBulletedIcon color={iconMessageActionsColor} />
+                  </IconButton>
+                  <IconButton style={btnSendStyle}>
+                    <TimerIcon color={iconMessageActionsColor} />
+                  </IconButton>
+                  <IconButton style={btnSendStyle}>
+                    <DeleteIcon color={iconMessageActionsColor} />
+                  </IconButton>
+                </div>
+                <div className="messages__form-submit-sub">
+                  <IconButton style={btnSendStyle}>
+                    <SendIcon color={iconSendColor} />
+                  </IconButton>
+                </div>
+
               </div>
             </form>
           </div>
