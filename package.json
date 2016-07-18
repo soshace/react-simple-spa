@@ -6,7 +6,7 @@
   "scripts": {
     "start": "npm run dev",
     "api": "node simple_api/server.js",
-    "dev": "webpack-dev-server --hot --inline --history-api-fallback"
+    "dev": "webpack-dev-server --hot --inline --history-api-fallback --host 0.0.0.0"
   },
   "devDependencies": {
     "babel-core": "^6.5.2",

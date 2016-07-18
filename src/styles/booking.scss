@@ -62,7 +62,8 @@
 
       padding-top: 20px;
       padding-bottom: 20px;
-      background: url('https://pp.vk.me/c630231/v630231081/32d68/2DvHIqH67GE.jpg') no-repeat center center fixed; 
+      border-radius: 4px;
+      background: url('https://pp.vk.me/c630231/v630231081/32d68/2DvHIqH67GE.jpg') no-repeat center center fixed;
       -webkit-background-size: cover;
       -moz-background-size: cover;
       -o-background-size: cover;
@@ -72,6 +73,7 @@
     &__top::before {
       content: '';
       position: absolute;
+      border-radius: 4px;
       z-index: 5;
       top: 0;
       left: 0;
@@ -114,6 +116,10 @@
     &__actions {
       position: relative;
       z-index: 10;
+    }
+
+    &__info {
+      border-radius: 4px;
     }
   }
 }

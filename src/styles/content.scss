@@ -23,6 +23,10 @@ body {
     padding: 20px 10%;
   }
 
+  .content div {
+    //flex-grow: 1;
+  }
+
   .content--active {
     margin-left: 20%;
     // width: 50%;
