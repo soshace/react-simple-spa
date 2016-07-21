@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 
 import { saveToken } from '../AC/user'
-import Header from './Header'
-import Sidebar from './Sidebar'
-import Content from './Content'
-import Loading from './Loading'
+import Header from '../components/Header'
+import Sidebar from '../components/Sidebar'
+import Content from '../components/Content'
+import Loading from '../components/Loading'
 
 class App extends Component {
   state = {

@@ -7,4 +7,6 @@ export default (token = '', action) => {
     case SAVE_TOKEN:
      return payload.token
   }
+
+  return token
 }

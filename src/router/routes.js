@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactRouter, { Router, Route, IndexRoute, browserHistory } from 'react-router'
 
-import App from '../components/App'
+import App from '../containers/App'
 import Home from '../components/Home'
 import BookingList from '../components/BookingList'
 import Booking from '../components/Booking'

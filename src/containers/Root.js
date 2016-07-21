@@ -4,7 +4,7 @@ import { Provider } from 'react-redux'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 
 import store from '../store'
-import routes from '../router'
+import routes from '../router/routes'
 //import Counter from './Counter'
 //import Articles from './Articles'
 
