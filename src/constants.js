@@ -1,1 +1,1 @@
-export const SAVE_TOKEN = 'SAVE_TOKEN'
+export const USER_LOGIN_SUCCESS = 'USER_LOGIN_SUCCESS'

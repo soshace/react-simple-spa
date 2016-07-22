@@ -1,12 +1,12 @@
-import { SAVE_TOKEN } from '../constants'
+import { USER_LOGIN_SUCCESS } from '../constants'
 
-export default (token = '', action) => {
+export default (userData = {}, action) => {
   const { type, payload } = action
 
   switch (type) {
-    case SAVE_TOKEN:
-     return payload.token
+    case USER_LOGIN_SUCCESS:
+     return {...payload.userData}
   }
 
-  return token
+  return userData
 }

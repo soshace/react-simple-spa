@@ -1,8 +1,8 @@
-import { SAVE_TOKEN } from '../constants'
+import { USER_LOGIN_SUCCESS } from '../constants'
 
-export function saveToken(token) {
+export function userLoginSuccess(userData) {
   return {
-    type: SAVE_TOKEN,
-    payload: { token }
+    type: USER_LOGIN_SUCCESS,
+    payload: { userData }
   }
 }
