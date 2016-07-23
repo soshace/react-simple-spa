@@ -1,4 +1,4 @@
-import React, { Component }  from 'react'
+import React from 'react'
 
 function Home(props) {
   const name = props.user.first_name + ' ' + props.user.last_name
