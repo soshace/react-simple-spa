@@ -7,7 +7,7 @@ export function login() {
   const url = 'http://test.easybook.ie/api/login'
   const params = 'user=info@thepearlsband.ie&password=27e877c3d7c5c939fb3b995a366f52d9'
 
-  http.open('POST', url, true);
+  http.open('POST', url, true)
 
   http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded')
 
@@ -21,5 +21,5 @@ export function login() {
 
     }
   }
-  http.send(params);
+  http.send(params)
 }
