@@ -2,7 +2,6 @@ import React from 'react'
 import ReactRouter, { Link } from 'react-router'
 import onWindowResize from '../decorators/onWindowResize'
 
-//import MobileTearSheet from '../../../MobileTearSheet'
 import { Drawer, Avatar, MenuItem, IconButton, FlatButton } from 'material-ui'
 import SettingsIcon from 'material-ui/svg-icons/action/settings'
 import InboxIcon from 'material-ui/svg-icons/content/inbox'
@@ -12,21 +11,16 @@ import CalendarIcon from 'material-ui/svg-icons/action/event'
 import FinanceIcon from 'material-ui/svg-icons/action/account-balance'
 
 function Sidebar(props) {
-  const { navIsOpen, toggleNav, isMobile, userName, userType } = props
+  const { navIsOpen, toggleNav, user, isMobile } = props
 
-  let accountBtnColor = isMobile ? null : '#2979ff'
-  let settingsBtnStyle = isMobile ? null : {
-    backgroundColor: '#2979ff',
-    width: 38,
-    height: 36,
-    padding: 0,
-    borderRadius: 2
-  }
-  let sidebarStyle = !isMobile && navIsOpen ? { width: '20%' } : null
-  let dockedProp = isMobile ? false : true
+  const userName = props.user.first_name + ' ' + props.user.last_name
+  const userType = props.user.musician_type
+  const sidebarClass = navIsOpen ? 'sidebar sidebar--nav-open' : 'sidebar'
+  
+  const dockedProp = isMobile ? false : true
 
   return (
-    <Drawer className="sidebar" docked={dockedProp} open={navIsOpen} containerStyle={sidebarStyle} onRequestChange={toggleNav}>
+    <Drawer className={sidebarClass} docked={dockedProp} open={navIsOpen} onRequestChange={toggleNav}>
       <div className="sidebar__top">
         <div className="sidebar__top-user">
           <div className="sidebar__top-img">
@@ -38,8 +32,8 @@ function Sidebar(props) {
           </div>
         </div>
         <div className="sidebar__top-btn">
-          <FlatButton backgroundColor={accountBtnColor} label="My Account" labelStyle={ {color: "white"} } hoverColor="none" rippleColor="rgba(0, 0, 0, 0.5)" />
-          <IconButton style={settingsBtnStyle}><SettingsIcon color="white" /></IconButton>
+          <FlatButton className="sidebar__top-btn-acc" label="My Account" labelStyle={ {color: "white"} } hoverColor="none" rippleColor="rgba(0, 0, 0, 0.5)" />
+          <IconButton className="sidebar__top-btn-set"><SettingsIcon color="white" /></IconButton>
         </div>
       </div>
       <div className="sidebar__nav">

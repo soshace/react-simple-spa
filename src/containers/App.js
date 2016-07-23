@@ -6,7 +6,6 @@ import { toggleNav } from '../AC/app'
 import Header from '../components/Header'
 import Sidebar from '../components/Sidebar'
 
-// classes for <main> - 'content content--active'
 class App extends Component {
 
   componentDidMount() {
@@ -15,12 +14,13 @@ class App extends Component {
 
   render() {
     const { navIsOpen, toggleNav, user } = this.props
+    const mainClass = navIsOpen ? 'content content--nav-open' : 'content'
 
     return(
       <div>
-        <Sidebar user={user} />
+        <Sidebar user={user} navIsOpen={navIsOpen} toggleNav={toggleNav} />
         <Header navIsOpen={navIsOpen} toggleNav={toggleNav} />
-        <main>
+        <main className={mainClass}>
           {this.props.children}
         </main>
       </div>
