@@ -1,1 +1,3 @@
 export const USER_LOGIN_SUCCESS = 'USER_LOGIN_SUCCESS'
+
+export const TOGGLE_NAV = 'TOGGLE_NAV'
