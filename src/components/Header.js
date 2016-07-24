@@ -13,13 +13,12 @@ function Header(props) {
 
   const navIcon = navIsOpen ? <CloseIcon /> : <BurgerIcon />
   const headerClass = navIsOpen ? 'header header--nav-open' : 'header'
-  
-  //const titleValue = navIsOpen ? null : 'Title?'
+
   const titleValue = 'Title?'
   const titleStyle = { display: 'none' }
 
   return (
-    <AppBar className={headerClass} title={null} titleStyle={titleStyle} iconElementLeft={<IconButton onTouchTap={toggleNav}>{navIcon}</IconButton>}>
+    <AppBar className={headerClass} title={null} titleStyle={titleStyle} iconElementLeft={<IconButton className="header__hamburger" onTouchTap={toggleNav}>{navIcon}</IconButton>}>
       <div className="header__title">
         <h1>{titleValue}</h1>
       </div>
