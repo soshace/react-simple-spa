@@ -1,4 +1,4 @@
-import React, { Component }  from 'react'
+import React  from 'react'
 import ReactRouter, { Link } from 'react-router'
 import onWindowResize from '../decorators/onWindowResize'
 import Loading from './Loading'
@@ -11,188 +11,106 @@ import StarIcon from 'material-ui/svg-icons/toggle/star'
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert'
 import ContentAdd from 'material-ui/svg-icons/content/add'
 
-class BookingList extends Component {
-  state = {
-    list: [],
-    fetching: false,
-    error: '',
-    fetched: false
-  }
+function BookingList(props) {
+  const bookings = props.bookings
 
-  componentDidMount() {
-    this.setState({
-      fetching: true,
-      error: '',
-      fetched: false
+  const listItems = bookings.map((item) => {
+    let id = +new Date()
+    const commonDate = new Date(item.date).toUTCString().slice(0, 16)
+
+    item.list.forEach((booking) => {
+      id+=booking.id
     })
 
-    const http = new XMLHttpRequest()
-    const url = 'http://test.easybook.ie/api/get_list'
-    const params = 'band_id=6&type=enquiry&mode=available&token' + this.props.token
-
-    http.open('POST', url, true)
-    http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded')
-
-    http.onreadystatechange = () => {
-    	if (http.readyState == 4 && http.status == 200) {
-    		const res = JSON.parse(http.responseText)
-        const bookings = res.response
-        let dates = []
-
-        bookings.forEach((booking, i) => {
-          let bookDate = booking.enquiry_date.split(' ')[0]
-
-          if (i === 0) {
-            dates.push({
-              date: bookDate,
-              bookings: []
-            })
-          } else {
-            if (!(
-              dates.some((item) => {
-                return item.date === bookDate
-              })
-            )) {
-              dates.push({
-                date: bookDate,
-                bookings: []
-              })
-            }
-          }
-        })
-
-        bookings.forEach((booking, i) => {
-          let bookDate = booking.enquiry_date.split(' ')[0]
-          dates.forEach((item, i) => {
-            if (item.date === bookDate) {
-              dates[i].bookings.push(booking)
-            }
-          })
-        })
-
-        dates.sort((a, b) => new Date(a.date) - new Date(b.date))
-
-        this.setState({
-          fetching: false,
-          error: res.error,
-          fetched: res.success,
-          list: dates.slice(400, 421)
-        })
-    	}
-    }
-    http.send(params)
-  }
-
-  render() {
-    if (!this.state.fetched || this.state.fetching) {
-      return (
-        <Loading />
-      )
-    }
-
-    const { isMobile } = this.props
-    const bookingsByDates = this.state.list
-    const moreBtn = isMobile ? null : <IconButton><MoreVertIcon color="grey" /></IconButton>
-    const tabBtnStyle = isMobile ? null : { display: "none" }
-    const avaSize = isMobile ? 50 : 70
-
-    const listItems = bookingsByDates.map((item) => {
-      let id = +new Date()
-      const commonDate = new Date(item.date).toUTCString().slice(0, 16)
-      item.bookings.forEach((booking) => {
-        id+=booking.id
-      })
-
-      const listOfBookings = item.bookings.map((booking) => {
-        const curDate = new Date(booking.enquiry_date.replace(' ', 'T'))
-        const date = curDate.toUTCString().slice(0, 16)
-        const time = booking.enquiry_date.slice(10, 16)
-
-        return (
-          <li key={booking.id} className="booking-list__booking">
-            <div className="booking-list__img">
-              <Link to={"/bookings/" + booking.id}>
-                <Avatar src="https://placehold.it/50x50"/>
-              </Link>
-            </div>
-            <div className="booking-list__main">
-              <Link to={"/bookings/" + booking.id}>
-                <p><strong>{booking.first_name + ' ' + booking.last_name}</strong></p>
-                <p>{date}</p>
-                <p>{booking.venue}</p>
-              </Link>
-            </div>
-            <div className="booking-list__more">
-              <div className="booking-list__time">
-                {time}
-              </div>
-              <div className="booking-list__star">
-                <StarIcon color="#ffca28"/>
-              </div>
-              <div className="booking-list__more-btn">
-                {moreBtn}
-              </div>
-            </div>
-          </li>
-        )
-      })
-
+    const listOfBookings = item.list.map((booking) => {
+      const curDate = new Date(booking.enquiry_date.replace(' ', 'T'))
+      const date = curDate.toUTCString().slice(0, 16)
+      const time = booking.enquiry_date.slice(10, 16)
 
       return (
-        <li key={id} className="booking-list__item">
-          <p className="booking-list__item-date">{commonDate}</p>
-          <ul className="booking-list__item-list">
-            {listOfBookings}
-          </ul>
+        <li key={booking.id} className="booking-list__booking">
+          <div className="booking-list__img">
+            <Link to={"/bookings/" + booking.id}>
+              <Avatar src="https://placehold.it/50x50"/>
+            </Link>
+          </div>
+          <div className="booking-list__main">
+            <Link to={"/bookings/" + booking.id}>
+              <p><strong>{booking.first_name + ' ' + booking.last_name}</strong></p>
+              <p>{date}</p>
+              <p>{booking.venue}</p>
+            </Link>
+          </div>
+          <div className="booking-list__more">
+            <div className="booking-list__time">
+              {time}
+            </div>
+            <div className="booking-list__star">
+              <StarIcon color="#ffca28"/>
+            </div>
+            <div className="booking-list__more-btn">
+              <IconButton><MoreVertIcon color="grey" /></IconButton>
+            </div>
+          </div>
         </li>
       )
     })
 
+
     return (
-      <div className="booking-list">
-        <ul className="booking-list__tabs">
-          <li className="booking-list__tabs-item booking-list__tabs-item--active">
-            <span className="booking-list__tabs-text">
-              Available
-              <span className="booking-list__tabs-badge">144</span>
-            </span>
-            <AvailableIcon style={tabBtnStyle} />
-          </li>
-          <li className="booking-list__tabs-item">
-            <span className="booking-list__tabs-text">
-              Unavailable
-              <span className="booking-list__tabs-badge">622</span>
-            </span>
-            <UnavailableIcon style={tabBtnStyle} />
-          </li>
-          <li className="booking-list__tabs-item">
-            <span className="booking-list__tabs-text">
-              Archive
-              <span className="booking-list__tabs-badge">3,234</span>
-            </span>
-            <ArchiveIcon style={tabBtnStyle} />
-          </li>
-          <li className="booking-list__tabs-item">
-            <span className="booking-list__tabs-text">
-              Starred
-              <span className="booking-list__tabs-badge">525</span>
-            </span>
-            <StarIcon style={tabBtnStyle} />
-          </li>
+      <li key={id} className="booking-list__item">
+        <p className="booking-list__item-date">{commonDate}</p>
+        <ul className="booking-list__item-list">
+          {listOfBookings}
         </ul>
-
-        <ul className="booking-list__list">
-          {listItems}
-        </ul>
-
-        <div className="booking-list__floating-btn">
-          <FloatingActionButton backgroundColor="#f4511e">
-            <ContentAdd />
-          </FloatingActionButton>
-        </div>
-      </div>
+      </li>
     )
-  }
+  })
+
+  return (
+    <div className="booking-list">
+      <ul className="booking-list__tabs">
+        <li className="booking-list__tabs-item booking-list__tabs-item--active">
+          <span className="booking-list__tabs-text">
+            Available
+            <span className="booking-list__tabs-badge">144</span>
+          </span>
+          <AvailableIcon />
+        </li>
+        <li className="booking-list__tabs-item">
+          <span className="booking-list__tabs-text">
+            Unavailable
+            <span className="booking-list__tabs-badge">622</span>
+          </span>
+          <UnavailableIcon />
+        </li>
+        <li className="booking-list__tabs-item">
+          <span className="booking-list__tabs-text">
+            Archive
+            <span className="booking-list__tabs-badge">3,234</span>
+          </span>
+          <ArchiveIcon />
+        </li>
+        <li className="booking-list__tabs-item">
+          <span className="booking-list__tabs-text">
+            Starred
+            <span className="booking-list__tabs-badge">525</span>
+          </span>
+          <StarIcon />
+        </li>
+      </ul>
+
+      <ul className="booking-list__list">
+        {listItems}
+      </ul>
+
+      <div className="booking-list__floating-btn">
+        <FloatingActionButton backgroundColor="#f4511e">
+          <ContentAdd />
+        </FloatingActionButton>
+      </div>
+    </div>
+  )
 }
 
-export default onWindowResize(BookingList)
+export default BookingList

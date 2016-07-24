@@ -1,19 +1,22 @@
 import React from 'react'
 import ReactRouter, { Router, Route, IndexRoute, browserHistory } from 'react-router'
 
-// Layouts
-import MainLayout from './layouts/MainLayout'
-
-// Pages
+import App from './containers/App'
 import HomeContainer from './containers/HomeContainer'
-//import BookingListContainer from './containers/BookingListContainer'
+import BookingListContainer from './containers/BookingListContainer'
 //import BookingContainer from './components/BookingContainer'
 // messages?
 
 export default (
   <Router history={browserHistory}>
-    <Route component={MainLayout}>
+    <Route component={App}>
       <Route path="/" component={HomeContainer} />
+
+      <Route path="bookings">
+        <IndexRoute component={BookingListContainer} />
+
+      </Route>
     </Route>
   </Router>
 )
+//<Route path=":bookingId" component={UserProfileContainer} />

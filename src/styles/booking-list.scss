@@ -134,6 +134,10 @@
     height: 18px !important;
   }
 
+  &__more-btn {
+    display: none;
+  }
+
   &__floating-btn {
     position: fixed;
     bottom: 30px;
@@ -188,6 +192,10 @@
 
     &__tabs-item--active {
       color: $blue-color;
+    }
+
+    &__tabs-item svg {
+      display: none !important;
     }
 
     &__tabs-text {

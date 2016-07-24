@@ -2,7 +2,6 @@ import store from '../store'
 import { userLoginSuccess } from '../AC/user'
 
 export function login() {
-
   const http = new XMLHttpRequest()
   const url = 'http://test.easybook.ie/api/login'
   const params = 'user=info@thepearlsband.ie&password=27e877c3d7c5c939fb3b995a366f52d9'
