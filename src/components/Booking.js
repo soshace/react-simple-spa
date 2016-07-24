@@ -41,40 +41,6 @@ import EditIcon from 'material-ui/svg-icons/editor/mode-edit'
 
 
 class Booking extends Component {
-  state = {
-    data: [],
-    fetching: false,
-    error: '',
-    fetched: false
-  }
-
-  componentDidMount() {
-    this.setState({
-      fetching: true,
-      error: '',
-      fetched: false
-    })
-
-    const http = new XMLHttpRequest()
-    const url = 'http://test.easybook.ie/api/get_booking'
-    const params = 'token=' + this.props.token + '&booking_id=' + this.props.params.id
-
-    http.open('POST', url, true)
-    http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded')
-
-    http.onreadystatechange = () => {
-    	if (http.readyState == 4 && http.status == 200) {
-    		const res = JSON.parse(http.responseText)
-        this.setState({
-          fetching: false,
-          error: res.error,
-          fetched: res.success,
-          data: res.response
-        })
-    	}
-    }
-    http.send(params)
-  }
 
   showMessages = () => {
     if (this.props.isMobile) {
@@ -92,25 +58,21 @@ class Booking extends Component {
   }
 
   render() {
-    if (!this.state.fetched || this.state.fetching) {
-      return (
-        <Loading />
-      )
-    }
 
     const { isMobile } = this.props
-    const data  = this.state.data
-    const name = data.contacts[0].first_name + ' ' + data.contacts[0].last_name
-    const role = data.contacts[0].role || 'No Info'
-    const date = new Date(data.event_date).toUTCString().slice(0, 16) || 'No Info'
-    const place = data.venue || 'No Info'
-    const eventType = data.event_type || 'No Info'
+    const { booking } = this.props
+
+    const name = booking.contacts[0].first_name + ' ' + booking.contacts[0].last_name
+    const role = booking.contacts[0].role || 'No Info'
+    const date = new Date(booking.event_date).toUTCString().slice(0, 16) || 'No Info'
+    const place = booking.venue || 'No Info'
+    const eventType = booking.event_type || 'No Info'
     const workPackage = 'Band & DJ Package'
-    const paid = 'Paid ' + data.deposit + ' of ' + data.total  || 'No Info'
+    const paid = 'Paid ' + booking.deposit + ' of ' + booking.total  || 'No Info'
     const daysLeft = Math.round((new Date(date) - new Date()) / 1000 / 60 / 60 / 24) + ' Days Left'  || 'No Info'
     let notesPart = 'No info'
-    if (data.notes.length > 0) {
-      notesPart = data.notes[data.notes.length - 1].note
+    if (booking.notes.length > 0) {
+      notesPart = booking.notes[booking.notes.length - 1].note
     }
     const inputStyles = {
       underlineStyle: {
@@ -128,7 +90,7 @@ class Booking extends Component {
     const iconSendColor = isMobile ? 'white' : '#2979ff'
     const iconMessageActionsColor = 'grey'
 
-    const listOfMessages = data.notes.map((message, i) => {
+    const listOfMessages = booking.notes.map((message, i) => {
       const imgSrc = message.type === 'system' ? 'https://pp.vk.me/c10408/u4172580/-6/x_ee97448e.jpg' : 'https://placehold.it/50x50'
       const text = message.note
       const date = new Date(message.date_created.replace(' ', 'T'))

@@ -4,7 +4,7 @@ import ReactRouter, { Router, Route, IndexRoute, browserHistory } from 'react-ro
 import App from './containers/App'
 import HomeContainer from './containers/HomeContainer'
 import BookingListContainer from './containers/BookingListContainer'
-//import BookingContainer from './components/BookingContainer'
+import BookingContainer from './containers/BookingContainer'
 // messages?
 
 export default (
@@ -14,9 +14,8 @@ export default (
 
       <Route path="bookings">
         <IndexRoute component={BookingListContainer} />
-
+        <Route path=":bookingId" component={BookingContainer} />
       </Route>
     </Route>
   </Router>
 )
-//<Route path=":bookingId" component={UserProfileContainer} />
