@@ -53,14 +53,16 @@ class Booking extends Component {
   }
 
   showMessageTemplates = () => {
-    const templates = document.querySelector('.messages__form-submit-templates')
+    const templates = document.querySelector('.messages__submit-templates')
     templates.classList.toggle('invisible')
   }
 
   render() {
-
-    const { isMobile } = this.props
     const { booking } = this.props
+
+    if (!booking.id) {
+      return <Loading />
+    }
 
     const name = booking.contacts[0].first_name + ' ' + booking.contacts[0].last_name
     const role = booking.contacts[0].role || 'No Info'
@@ -86,10 +88,6 @@ class Booking extends Component {
       },
     }
 
-    const btnSendStyle = isMobile ? { borderRadius: '50%', backgroundColor: '#2979ff' } : { backgroundColor: 'white' }
-    const iconSendColor = isMobile ? 'white' : '#2979ff'
-    const iconMessageActionsColor = 'grey'
-
     const listOfMessages = booking.notes.map((message, i) => {
       const imgSrc = message.type === 'system' ? 'https://pp.vk.me/c10408/u4172580/-6/x_ee97448e.jpg' : 'https://placehold.it/50x50'
       const text = message.note
@@ -101,14 +99,14 @@ class Booking extends Component {
       return (
         <li key={message.note_id} className={messageClass}>
           <div className="messages__ava">
-            <Avatar src="https://placehold.it/50x50" />
+            <Avatar src={imgSrc} />
           </div>
           <div className="messages__content">
             <p className="messages__text">{text}</p>
             <p className="messages__time">{time}</p>
-          </div>
-          <div className="messages__actions">
-            <CheckIcon color="green"/>
+            <div className="messages__actions">
+              <CheckIcon color="green"/>
+            </div>
           </div>
         </li>
       )
@@ -170,20 +168,24 @@ class Booking extends Component {
         <div className="messages">
           <div className="messages__inner">
             <div className="messages__header">
-              <IconButton onTouchTap={this.showMessages}><BackIcon color="white" /></IconButton>
-              <IconButton><CloseIcon color="white" /></IconButton>
+              <IconButton onTouchTap={this.showMessages}>
+                <BackIcon color="white" />
+              </IconButton>
+              <IconButton>
+                <CloseIcon color="white" />
+              </IconButton>
             </div>
             <ul className="messages__list">
               {listOfMessages}
             </ul>
             <form className="messages__form">
-              <div className="messages__form-more">
+              <div className="messages__more">
                 <IconButton style={{ borderRadius: "50%", backgroundColor: "#9babb3" }}>
                   <MoreVertIcon color="white" />
                 </IconButton>
               </div>
-              <div className="messages__form-input">
-                <TextField className="messages__form-input-desktop"
+              <div className="messages__input">
+                <TextField className="messages__input-desktop"
                   floatingLabelText="Write Message"
                   underlineStyle={inputStyles.underlineStyle}
                   underlineFocusStyle={inputStyles.underlineStyle}
@@ -193,71 +195,91 @@ class Booking extends Component {
                     width: '100%'
                   }}
                 />
-              <input className="messages__form-input-mobile" type="text" placeholder="Write Message"/>
+              <input className="messages__input-mobile" type="text" placeholder="Write Message"/>
               </div>
-              <div className="messages__form-submit">
-                <div className="messages__form-submit-templates invisible">
-                  <div className="messages__form-submit-templates-top">
-                    <IconButton style={btnSendStyle} onTouchTap={this.showMessageTemplates}>
-                      <TemplatesIcon color={iconMessageActionsColor} />
+              <div className="messages__submit">
+                <div className="messages__submit-templates invisible">
+                  <div className="messages__submit-templates-input">
+                    <IconButton onTouchTap={this.showMessageTemplates}>
+                      <TemplatesIcon />
                     </IconButton>
                     <p>Message Templates</p>
-                    <IconButton style={btnSendStyle}>
-                      <AddIcon color="#2979ff" />
+                    <IconButton>
+                      <AddIcon />
                     </IconButton>
 
                   </div>
-                  <ul className="messages__form-submit-templates-list">
-                    <li>Hello
-                      <IconButton style={btnSendStyle}>
-                        <DeleteIcon color={iconMessageActionsColor} />
+                  <ul className="messages__submit-templates-items">
+                    <li>
+                      <span>Hello</span>
+                      <IconButton>
+                        <EditIcon />
+                      </IconButton>
+                      <IconButton>
+                        <DeleteIcon />
                       </IconButton>
                     </li>
-                    <li>Goodbye
-                      <IconButton style={btnSendStyle}>
-                        <DeleteIcon color={iconMessageActionsColor} />
+                    <li>
+                      <span>Goodbye</span>
+                      <IconButton>
+                        <EditIcon />
+                      </IconButton>
+                      <IconButton>
+                        <DeleteIcon />
                       </IconButton>
                     </li>
-                    <li>Thank you
-                      <IconButton style={btnSendStyle}>
-                        <DeleteIcon color={iconMessageActionsColor} />
+                    <li>
+                      <span>Thank you</span>
+                      <IconButton>
+                        <EditIcon />
+                      </IconButton>
+                      <IconButton>
+                        <DeleteIcon />
                       </IconButton>
                     </li>
-                    <li>How are you?
-                      <IconButton style={btnSendStyle}>
-                        <DeleteIcon color={iconMessageActionsColor} />
+                    <li>
+                      <span>How are you?</span>
+                      <IconButton>
+                        <EditIcon />
+                      </IconButton>
+                      <IconButton>
+                        <DeleteIcon />
                       </IconButton>
                     </li>
-                    <li>I have sent you a message
-                      <IconButton style={btnSendStyle}>
-                        <DeleteIcon color={iconMessageActionsColor} />
+                    <li>
+                      <span>I have sent you a message</span>
+                      <IconButton>
+                        <EditIcon />
+                      </IconButton>
+                      <IconButton>
+                        <DeleteIcon />
                       </IconButton>
                     </li>
                   </ul>
                 </div>
-                <div className="messages__form-submit-more">
-                  <IconButton style={btnSendStyle}>
-                    <SmileIcon color={iconMessageActionsColor} />
+                <div className="messages__submit-more">
+                  <IconButton>
+                    <SmileIcon />
                   </IconButton>
-                  <IconButton style={btnSendStyle} onTouchTap={this.showMessageTemplates}>
-                    <TemplatesIcon color={iconMessageActionsColor} />
+                  <IconButton onTouchTap={this.showMessageTemplates}>
+                    <TemplatesIcon />
                   </IconButton>
-                  <IconButton style={btnSendStyle}>
-                    <AttachIcon color={iconMessageActionsColor} />
+                  <IconButton>
+                    <AttachIcon />
                   </IconButton>
-                  <IconButton style={btnSendStyle}>
-                    <ListBulletedIcon color={iconMessageActionsColor} />
+                  <IconButton>
+                    <ListBulletedIcon />
                   </IconButton>
-                  <IconButton style={btnSendStyle}>
-                    <TimerIcon color={iconMessageActionsColor} />
+                  <IconButton>
+                    <TimerIcon />
                   </IconButton>
-                  <IconButton style={btnSendStyle}>
-                    <DeleteIcon color={iconMessageActionsColor} />
+                  <IconButton>
+                    <DeleteIcon />
                   </IconButton>
                 </div>
-                <div className="messages__form-submit-sub">
-                  <IconButton style={btnSendStyle}>
-                    <SendIcon color={iconSendColor} />
+                <div className="messages__submit-btn">
+                  <IconButton>
+                    <SendIcon />
                   </IconButton>
                 </div>
 

@@ -57,6 +57,10 @@
   &__info {
     background-color: white;
   }
+
+  &__info svg {
+    fill: $grey-icon-color !important;
+  }
 }
 
 @media (min-width: $screen_md) {

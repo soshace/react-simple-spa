@@ -24,7 +24,6 @@
     display: flex;
     box-sizing: border-box;
     margin-bottom: 30px;
-    position: relative;
   }
 
   &__item:last-child {
@@ -60,7 +59,7 @@
     max-width: 85%;
     flex-basis: 83%;
     flex-grow: 1;
-    padding: 10px 2%;
+    padding: 14px 3%;
     margin-right: auto;
     border-radius: 4px;
     color: white;
@@ -109,13 +108,15 @@
   &__time {
     margin: 0;
     color: #9BABF0;
-    font-size: 10px;
+    font-size: 12px;
     font-weight: 100;
   }
 
   &__text {
     margin: 0;
     margin-bottom: 10px;
+    font-size: 16px;
+    line-height: 22px;
   }
 
   &__item--reverse .messages__time {
@@ -124,10 +125,14 @@
   }
 
   &__actions {
-    // order: 1;
     position: absolute;
-    top: 65px;
-    left: 10px;
+    top: 68px;
+    left: -70px;
+  }
+
+  &__actions svg {
+    height: 20px !important;
+    width: 20px !important;
   }
 
   &__item--reverse .messages__actions {
@@ -147,18 +152,18 @@
     margin-bottom: 15px;
   }
 
-  &__form-more {
+  &__more {
 
   }
 
-  &__form-input {
+  &__input {
     flex-grow: 1;
     padding: 0 10px;
 
     position: relative;
   }
 
-  &__form-input::before {
+  &__input::before {
     content: '';
     position: absolute;
     top: 0;
@@ -171,7 +176,7 @@
     border-right: 10px solid transparent;
   }
 
-  &__form-input-mobile {
+  &__input-mobile {
     box-sizing: border-box;
     width: 100%;
     padding: 16px 10px;
@@ -180,11 +185,20 @@
     outline: none;
   }
 
-  &__form-input-desktop {
+  &__input-desktop {
     display: none !important;
   }
 
-  &__form-submit-more {
+  &__submit-btn button {
+    border-radius: 50% !important;
+    background-color: $blue-color !important;
+  }
+
+  &__submit-btn svg {
+    fill: white !important;
+  }
+
+  &__submit-more {
     display: none;
   }
 }
@@ -233,9 +247,15 @@
     }
 
     &__actions {
-      top: 33px;
+      position: absolute;
+      top: 68px;
+      left: -70px;
+    }
+
+    &__actions {
+      top: 42%;
       left: auto;
-      right: -15px;
+      right: -5%;
     }
 
     &__form {
@@ -249,59 +269,68 @@
       box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
     }
 
-    &__form-more {
-      // align-self: flex-start;
-      // order: 2;
+    &__more {
       display: none;
     }
 
-    &__form-input {
+    &__input {
       order: 1;
       width: 100%;
       flex-grow: 0;
-      // padding: 0 10px;
     }
 
-    &__form-input-mobile {
+    &__input-mobile {
       display: none;
     }
 
-    &__form-input-desktop {
+    &__input-desktop {
       display: block !important;
       margin-bottom: 20px;
     }
 
-    &__form-submit {
+    &__submit {
       position: relative;
       width: 100%;
       display: flex;
       order: 3;
-      //align-self: flex-end;
     }
 
-    &__form-submit-more {
+    &__submit-more {
       display: flex;
-      //flex-grow: 1;
       flex-basis: 90%;
     }
 
-    &__form-submit-sub {
+    &__submit-btn {
+      display: flex;
       flex-basis: 10%;
     }
 
-    &__form-submit-sub button {
+    &__submit-btn button {
+      flex-grow: 1;
+      padding: 8px !important;
       margin-left: auto !important;
+      background-color: white !important;
     }
 
-    &__form-submit-more button {
+    &__submit-btn svg {
+      fill: $blue-color !important;
+      height: 32px !important;
+      width: 32px !important;
+    }
+
+    &__submit-more button {
       position: relative;
     }
 
-    &__form-submit-more button:last-child {
+    &__submit-more svg {
+      fill: $grey-icon-color !important;
+    }
+
+    &__submit-more button:last-child {
       margin-left: auto !important;
     }
 
-    &__form-submit-more button::after {
+    &__submit-more button::after {
       content: '';
       position: absolute;
       top: 50%;
@@ -314,52 +343,59 @@
       background-color: grey;
     }
 
-    &__form-submit-more button:nth-child(5)::after {
+    &__submit-more button:nth-child(5)::after {
       width: 0;
     }
 
-    &__form-submit-templates {
+    &__submit-templates {
+      padding: 0 6px;
       position: absolute;
       z-index: 10;
-      top: -2px;
-      left: 37px;
+      top: -9px;
+      left: 42px;
       background-color: white;
       box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
     }
 
-    &__form-submit-templates-top {
-      padding: 0 15px;
+    &__submit-templates svg {
+      fill: $grey-icon-color !important;
+    }
+
+    &__submit-templates-input button:last-child svg {
+      fill: $blue-color !important;
+    }
+
+    &__submit-templates-input {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
       border-bottom: 1px solid $grey-color;
     }
 
-    &__form-submit-templates-top button {
-      display: inline-block;
-      padding-top: 15px !important;
-      vertical-align: top;
+    &__submit-templates-input p {
+      margin: 25px 0;
+      flex-grow: 1;
+      font-size: 16px;
+      color: $grey-icon-color;
     }
 
-    &__form-submit-templates-top button:last-child {
-      margin-left: 30px !important;
-    }
-
-    &__form-submit-templates-top p {
-      display: inline-block;
-      vertical-align: top;
-      color: grey;
-    }
-
-    &__form-submit-templates-list {
+    &__submit-templates-items {
       list-style: none;
       margin: 0;
       padding: 0;
-      padding: 0 25px;
     }
 
-    &__form-submit-templates-list li {
+    &__submit-templates-items li {
       padding: 10px 0;
       display: flex;
       justify-content: space-between;
       align-items: center;
+    }
+
+    &__submit-templates-items span {
+      flex-grow: 1;
+      padding-left: 12px;
+      font-size: 18px;
     }
   }
 }
