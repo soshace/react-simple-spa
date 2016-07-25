@@ -37,16 +37,15 @@
     margin-right: 20px;
   }
 
-  &__top-name {
-    // font?
-  }
-
   &__top-name p {
     margin: 0;
+    margin-bottom: 5px;
+    font-size: 16px;
   }
 
   &__top-name small {
     font-weight: 100;
+    font-size: 14px;
   }
 
   &__top-btn {
@@ -101,6 +100,7 @@
 
     &__top-img {
       margin-right: 0;
+      margin-bottom: 5px;
     }
 
     &__top-btn {

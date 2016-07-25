@@ -123,21 +123,21 @@ class Booking extends Component {
               <IconButton><CloseIcon color="white" /></IconButton>
             </div>
             <div className="booking__contacts">
-              <div>
-                <Avatar src="https://placehold.it/30x30" size={30}/>
+              <div className="booking__contacts-item">
+                <Avatar src="https://placehold.it/40x40" />
               </div>
-              <div>
-                <Avatar src="https://placehold.it/30x30" size={30}/>
+              <div className="booking__contacts-item">
+                <Avatar src="https://placehold.it/40x40" />
               </div>
-              <div>
-                <IconButton style={{ borderRadius: "50%", backgroundColor: "#2979ff", width: 30, height: 30, padding: 5 }} iconStyle={{ width: 20, height: 20 }}>
+              <div className="booking__contacts-more">
+                <IconButton style={{ borderRadius: "50%", backgroundColor: "#2979ff", width: 40, height: 40, padding: 10 }} iconStyle={{ width: 20, height: 20 }}>
                   <MoreHorizIcon color="white" />
                 </IconButton>
               </div>
             </div>
             <div className="booking__user">
               <div className="booking__user-ava">
-                <Avatar src="https://placehold.it/50x50" size={50}/>
+                <Avatar src="https://placehold.it/60x60" />
               </div>
               <div className="booking__user-name">
                 <p>{name}</p>

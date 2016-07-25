@@ -28,6 +28,11 @@
     margin-right: 20px;
   }
 
+  &__user-ava img {
+    width: 60px !important;
+    height: 60px !important;
+  }
+
   &__user-name {
     flex-basis: 70%;
     flex-grow: 1;
@@ -35,6 +40,12 @@
 
   &__user p {
     margin: 0;
+    margin-bottom: 5px;
+    font-size: 16px;
+  }
+
+  &__user small {
+    font-size: 14px;
   }
 
   &__actions {
@@ -54,7 +65,7 @@
     vertical-align: top;
     width: 30%;
     //max-width: 350px;
-    margin-right: 5%;
+    margin-right: 3%;
     border-radius: 4px;
 
     &__top {
@@ -89,23 +100,31 @@
 
     &__contacts {
       display: block;
-      text-align: right;
+      margin-bottom: 20px;
       position: relative;
       z-index: 10;
+      text-align: right;
     }
 
-    &__contacts div {
+    &__contacts-item {
       display: inline-block;
       vertical-align: middle;
-      margin-right: 10px;
-      height: 30px;
+      margin-right: 20px;
+      width: 40px;
+      height: 40px;
+    }
+
+    &__contacts-more {
+      display: inline-block;
+      vertical-align: middle;
+      margin-right: 15px;
+      width: 40px;
+      height: 40px;
     }
 
     &__user {
       position: relative;
       z-index: 10;
-      // padding: 10px 15px;
-      // margin-left: 10%;
     }
 
     &__user-ava {

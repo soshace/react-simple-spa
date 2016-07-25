@@ -52,6 +52,7 @@
     padding-left: 15px;
     margin-bottom: 10px;
     font-size: 12px;
+    text-transform: uppercase;
     color: grey;
   }
 
@@ -200,6 +201,7 @@
 
     &__tabs-text {
       position: relative;
+      font-size: 16px;
     }
 
     &__tabs-item--active .booking-list__tabs-text::after {
@@ -218,7 +220,7 @@
     &__tabs-badge {
       display: inline-block;
       padding: 5px 10px;
-      margin-left: 10px;
+      margin-left: 12px;
       border-radius: 10px;
       background-color: $grey-color;
     }
@@ -253,7 +255,6 @@
       flex-basis: 7%;
       margin-right: 2%;
       margin-left: 1%;
-      // flex-basis: 10%;
     }
 
     &__img a {
@@ -261,21 +262,15 @@
     }
 
     &__main {
-      //flex-basis: 80%;
-      // flex-grow: 1;
+      flex-basis: 70%;
     }
 
-    &__main a {
-      //width: 80%;
-    }
-
-    &__main p {
-      // margin-bottom: 5px;
+    &__main strong {
       font-size: 16px;
     }
 
     &__more {
-      flex-basis: 15%;
+      flex-basis: 20%;
       flex-direction: row;
       justify-content: space-around;
       align-items: center;
@@ -287,7 +282,7 @@
 
     &__star {
       margin-top: 0;
-      padding-left: 15px;
+      margin-left: 15%;
     }
 
     &__star svg {
@@ -296,6 +291,7 @@
 
     &__more-btn {
       display: block;
+      margin-left: 5%;
     }
   }
 }

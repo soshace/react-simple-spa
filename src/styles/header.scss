@@ -23,8 +23,7 @@
   &__title h1 {
     margin: 0;
     padding: 0;
-    font-size: 24px;
-    line-height: 22px;
+    font-size: 22px;
     font-family: Roboto, sans-serif;
     font-weight: 400;
   }
@@ -84,11 +83,6 @@
       display: none;
     }
 
-    &__title h1 {
-      // font-size: 24px;
-      // line-height: 22px;
-    }
-
     &__search {
       flex-basis: 75%;
       margin-right: auto;
@@ -102,10 +96,9 @@
     }
 
     &__search input {
-      position: relative;
       display: inline-block;
       box-sizing: border-box;
-      padding: 5px;
+      padding: 10px;
       padding-left: 50px;
       width: 100%;
 
@@ -113,13 +106,8 @@
       border-radius: 4px;
       background-color: #448aff;
       color: white;
-    }
-
-    &__search input::before {
-      content: '11';
-      position: absolute;
-      width: 20px;
-      height: 20px;
+      font-family: $font-family;
+      font-size: 14px;
     }
 
     &__notification {
