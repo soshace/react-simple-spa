@@ -1,5 +1,6 @@
 import store from '../store'
 import { getBookingListSuccess } from '../AC/booking-list'
+import { dataFetching } from '../AC/app'
 
 export function getBookings() {
   const http = new XMLHttpRequest()
@@ -8,6 +9,7 @@ export function getBookings() {
   const params = 'band_id=6&type=enquiry&mode=available&token' + token
 
   http.open('POST', url, true)
+  // store.dispatch(dataFetching(true))
 
   http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded')
 
@@ -51,10 +53,8 @@ export function getBookings() {
         })
 
         dates.sort((a, b) => new Date(a.date) - new Date(b.date))
-
         store.dispatch(getBookingListSuccess(dates.slice(400, 421)))
       }
-
     }
   }
   http.send(params)
