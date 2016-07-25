@@ -1,5 +1,5 @@
 import store from '../store'
-import { getBookingSuccess } from '../AC/booking'
+import { getBookingSuccess } from '../actions/booking'
 
 export function getBooking(id) {
   const http = new XMLHttpRequest()

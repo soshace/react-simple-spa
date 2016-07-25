@@ -1,5 +1,5 @@
 import store from '../store'
-import { userLoginSuccess } from '../AC/user'
+import { userLoginSuccess } from '../actions/user'
 
 export function login() {
   const http = new XMLHttpRequest()

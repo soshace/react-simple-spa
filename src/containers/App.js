@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import * as userApi from '../api/user'
 import store from '../store'
-import { toggleNav } from '../AC/app'
+import { toggleNav } from '../actions/app'
 import Header from '../components/Header'
 import Sidebar from '../components/Sidebar'
 import Loading from '../components/Loading'
@@ -19,6 +19,8 @@ class App extends Component {
     // changing dataReady is not finished
     // need to check action dataFetching() and run it before api call with true
     // and after it will be finished with false
+    // in final Loading component must be only in this root component
+    // (remove from booking etc.)
     const mainElement = dataReady ? <Loading /> : this.props.children
 
     return(

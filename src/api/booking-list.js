@@ -1,6 +1,6 @@
 import store from '../store'
-import { getBookingListSuccess } from '../AC/booking-list'
-import { dataFetching } from '../AC/app'
+import { getBookingListSuccess } from '../actions/booking-list'
+import { dataFetching } from '../actions/app'
 
 export function getBookings() {
   const http = new XMLHttpRequest()
